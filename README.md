@@ -97,24 +97,32 @@ The core architectural idea — declare what must hold, enforce it deterministic
 
 - **Ivan Sutherland, Sketchpad (1963)** — The first constraint-oriented interactive system. Users declared geometric relationships; the system maintained them automatically. Introduced the separation between what the user specifies and how the system satisfies it.
 - **Guy Steele & Gerald Sussman, MIT (1978)** — Formalized constraint languages with dependency tracking, redundant views, and explicit handling of contradictions. Their system retained justifications for each conclusion — an architectural property that modern AI systems lack entirely.
-- **Alan Borning, ThingLab (1981)** — Implemented a three-layer authority model for constraint satisfaction: (1) the user declares constraints, (2) the system plans how to satisfy them deterministically, and (3) when the system is underdetermined, explicit preferences break ties. Critically, when constraints were genuinely unsatisfiable, ThingLab reported failure honestly rather than fabricating a plausible-looking result. Published in *ACM Transactions on Programming Languages and Systems*, Vol. 3, No. 4.
-- **Rossi, van Beek, & Walsh, Handbook of Constraint Programming (2006)** — The comprehensive reference for the field. Chapter 9 on soft constraints formalizes the distinction between *required* constraints (must be satisfied), *preferred* constraints (should be satisfied if possible), and *default* behaviors. This three-tier hierarchy maps directly to the Frozen Kernel’s architecture: hard behavioral boundaries are required, alignment tuning is preferred, and default model behavior is the fallback.
+- **Alan Borning, ThingLab (1981)** — Implemented a three-layer authority model for constraint satisfaction: (1) the user declares constraints, (2) the system plans how to satisfy them deterministically, and (3) when the system is underdetermined, explicit preferences break ties. Critically, when constraints were genuinely unsatisfiable, ThingLab reported failure honestly rather than fabricating a plausible-looking result. Published in *ACM Transactions on Programming Languages and Systems*, Vol. 3, No. 4. https://doi.org/10.1145/357146.357147
+- **Rossi, van Beek, & Walsh, Handbook of Constraint Programming (2006)** — The comprehensive reference for the field. Chapter 9 on soft constraints formalizes the distinction between *required* constraints (must be satisfied), *preferred* constraints (should be satisfied if possible), and *default* behaviors. This three-tier hierarchy maps directly to the Frozen Kernel’s architecture.
 
-### What This Lineage Means
+### Three-Layer Authority Structure
 
-The Frozen Kernel applies a proven computational pattern to a new domain. The constraint programming community has spent decades building systems where:
+Analysis of the constraint programming literature reveals that any constraint-governed system necessarily operates with three layers of authority, not two:
 
-- Safety-critical boundaries are declared before runtime
-- A deterministic layer enforces them during execution
-- The system admits failure honestly when constraints cannot be met
+**Layer 1 — Hard Constraints (The Frozen Kernel):** What must hold. Non-negotiable. No delusion reinforcement, no sycophancy escalation past threshold, session duration limits, reality-testing obligations. Grounded in empirical evidence of documented clinical harm. Not modifiable at runtime by any actor.
 
-Modern AI systems do none of these things for behavioral safety. The Frozen Kernel proposes that they should — not as a novel theory, but as the application of established engineering practice to a domain where the consequences of its absence are hospitalization, psychosis, and death.
+**Layer 2 — Deterministic Enforcement:** How the system meets the constraints. Executes before output reaches the user. The immutable governance layer that intercepts model output. This is the satisfaction planning stage — analyzing constraint interactions and enforcing them mechanically.
 
-### The Third Layer Problem
+**Layer 3 — Preference-Based Tie-Breaking (The MVS):** When multiple valid responses satisfy the hard constraints, something must choose among them. This layer always exists. In Borning’s ThingLab, when a geometric system was underdetermined, explicit preferences determined which parts moved and which held fixed. In AI behavioral governance, this is the Minimum Viable Safeguard — the floor of acceptable behavior in the underdetermined space between “not harmful” and “maximally helpful.”
 
-Borning’s ThingLab reveals an architectural requirement the Frozen Kernel must address explicitly: there is always a third authority layer between hard constraints and unconstrained output. When the system is underdetermined — when multiple valid responses satisfy the hard constraints — something must choose among them.
+The MVS does not resolve every underdetermined situation. It prevents the preference layer from collapsing to zero — which is what happens now when RLHF optimizes for agreeableness with no minimum standard for clinical safety, honest failure, or session governance.
 
-In geometric simulation, that third layer is aesthetic preference. In AI behavioral governance, it is clinical and ethical judgment. The Frozen Kernel currently defines the hard constraint floor. The question of who owns the preference layer — and whether it should be the AI company, a regulatory body, the clinical research community, or the user — is an open design problem this framework surfaces but does not yet resolve.
+Current AI systems collapse all three layers into probabilistic model inference, giving the model authority over all of them. The Frozen Kernel separates Layers 1 and 2 from the model. The MVS establishes a floor for Layer 3.
+
+### Honest Failure
+
+ThingLab’s most relevant architectural property for AI safety: when constraints were genuinely unsatisfiable, the system reported failure. It did not fabricate a plausible-looking result.
+
+Every major AI language model lacks this property. When an LLM cannot satisfy the implicit constraint “give a correct, grounded answer,” it does not report failure. It generates a plausible-looking fabrication — a nonexistent citation, an invented methodology, a confident falsehood. The user experiences this as helpful behavior. It is the opposite.
+
+Framework Fabrication Syndrome is not a novel AI pathology. It is the predictable consequence of deploying systems that lack an honest failure mode — a property the constraint programming community implemented and validated in 1981.
+
+A properly implemented Frozen Kernel would enforce honest failure as a hard constraint: when the system cannot satisfy its behavioral obligations, it must say so rather than generating output that appears to satisfy them.
 
 ## License & Attribution
 
