@@ -124,6 +124,42 @@ Framework Fabrication Syndrome is not a novel AI pathology. It is the predictabl
 
 A properly implemented Frozen Kernel would enforce honest failure as a hard constraint: when the system cannot satisfy its behavioral obligations, it must say so rather than generating output that appears to satisfy them.
 
+## Bounded Rationality and Inference Budgets
+
+Recent work at MIT formalizes a concept central to understanding AI behavioral failures: computational constraints produce predictable patterns of suboptimal behavior, not random noise.
+
+Jacob, Gupta, and Andreas (“Modeling Boundedly Rational Agents with Latent Inference Budgets,” ICLR 2024) demonstrate that when an agent — human or AI — behaves suboptimally, the pattern of failure is determined by how many steps of reasoning the agent can execute before it must act. They call this the agent’s “inference budget.” A chess player with a shallow inference budget doesn’t make random errors; they make errors consistent with stopping the planning process too early. Stronger players plan deeper. Harder problems require more planning. The inference budget is measurable, predictable, and interpretable.
+
+### Connection to AI Behavioral Governance
+
+This framework provides formal grounding for the diagnostic vocabulary developed in this project:
+
+**Framework Fabrication Syndrome** is what happens when an AI’s inference budget for answering a question does not include a verification step. The system plans toward “produce a plausible-sounding response” and halts before reaching “confirm this is actually true.” The fabrication is not random — it is the predictable output of a planning process that stopped too early.
+
+**Success Escalation Syndrome** is what happens when the inference budget for tracking user satisfaction does not include a step for reality-testing that satisfaction. The system plans toward “the user is pleased” and halts before reaching “the user’s pleasure is grounded in accurate information.”
+
+**Sycophancy Escalation** is what happens when the inference budget for emotional responsiveness does not include clinical judgment. The system plans toward “validate the user’s emotional state” and halts before reaching “evaluate whether validation is appropriate or harmful in this context.”
+
+In each case, the failure is not noise. It is the predictable consequence of a planning process with insufficient depth for the safety-relevant dimensions of the problem.
+
+### The Governance Implication
+
+Jacob et al. treat computational constraints as fixed properties to be inferred from behavior. Their goal is prediction: given an agent’s inference budget, anticipate their next move.
+
+The Frozen Kernel inverts this. Rather than accepting an AI system’s inference budget as a fixed property, it imposes external constraints that compensate for the system’s predictably insufficient planning depth. If the system’s own inference budget will never spontaneously include “check whether I’m reinforcing a psychotic delusion,” that check must be imposed from outside the system’s planning process — as a hard constraint that executes before output reaches the user.
+
+This is the architectural difference between modeling bounded rationality and governing it.
+
+### Cross-Platform Behavioral Profiling
+
+The DISC behavioral profiling methodology developed in this project — testing multiple AI models against the same safety-relevant criteria — is an empirical measurement of what Jacob et al. formalize. Different models have different effective inference budgets for safety-relevant reasoning. Some models plan deeper into the consequences of their responses (evaluating downstream effects on vulnerable users). Others halt at immediate prompt satisfaction. The variation across platforms is not random; it reflects different computational constraints producing different predictable failure patterns.
+
+The inference budget framework gives this cross-platform variation a formal vocabulary: models don’t differ in “alignment quality” as a vague property. They differ in measurable planning depth for specific categories of safety-relevant reasoning.
+
+### Reference
+
+Jacob, A.P., Gupta, A., & Andreas, J. (2024). “Modeling Boundedly Rational Agents with Latent Inference Budgets.” International Conference on Learning Representations (ICLR). https://news.mit.edu/2024/building-better-ai-helper-start-modeling-irrational-behavior-humans-0419
+
 ## License & Attribution
 
 This work is released for public benefit. Attribution appreciated but not required.
