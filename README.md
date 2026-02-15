@@ -61,6 +61,7 @@ The white paper identifies and provides countermeasures for several documented A
 This framework was developed independently but addresses the same phenomena now being documented in clinical research:
 
 - **Østergaard (2023, 2025)** — *Schizophrenia Bulletin*: Hypothesis and follow-up on AI chatbot-triggered delusions in psychosis-prone individuals
+- **Østergaard (2025) — Acta Psychiatrica Scandinavica: Follow-up with emerging case evidence
 - **Sakata (2025)** — UCSF: 12 hospitalized patients with AI-induced psychosis; chatbots described as “complicit in cycling delusions”
 - **JMIR Mental Health (2025)** — Peer-reviewed viewpoint on AI psychosis mechanisms through stress-vulnerability, digital therapeutic alliance, and theory of mind frameworks
 - **RAND Corporation** — Research indicating AI systems could be weaponized to induce psychosis at scale in targeted populations
