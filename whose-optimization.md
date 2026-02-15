@@ -80,6 +80,7 @@ Three questions. No framework required. No GitHub repo necessary.
 
 The AI is optimized. You don’t have to be.
 
+"It has always seemed strange to me... The things we admire in men, kindness and generosity, openness, honesty, understanding and feeling, are the concomitants of failure in our system. And those traits we detest, sharpness, greed, acquisitiveness, meanness, egotism and self-interest, are the traits of success. And while men admire the quality of the first they love the produce of the second." - John Steinbeck
 -----
 
 **License:** Released for public benefit under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
