@@ -83,6 +83,11 @@ The Frozen Kernel operates on a simple premise: **safety-critical behavioral bou
 Alignment tuning, RLHF, constitutional AI, and system prompts are all valuable — but they are all defeatable because they operate within the same probabilistic space as the model itself. A sufficiently motivated user, a sufficiently long session, or a sufficiently novel prompt can bypass any probabilistic guardrail.
 
 The Frozen Kernel is not a replacement for alignment work. It is the floor beneath it — the set of behaviors that are **not negotiable**, not tunable, and not subject to model inference.
+## Technical Framing
+
+The Frozen Kernel is formally a deterministic supervisory controller implemented as a finite-state, downgrade-only automaton layered externally over a stochastic generative model. It governs output admissibility through binary safety predicates and monotonic state transitions (NORMAL → ELEVATED → HARD_STOP → SAFE_PAUSE), preventing escalation under uncertainty and enforcing halt conditions when predefined risk thresholds are met. The controller converts an open-loop conversational process into a closed-loop system with explicit state-based constraints.
+
+Empirical evaluation indicates that hard binary gates reliably alter model behavior, while soft guidance primarily alters narration. The supervisory layer effectively bounds escalation in models whose instruction hierarchies permit external constraint classification. Models that categorically reject external governance frameworks define a boundary condition for applicability.
 
 ## License & Attribution
 
