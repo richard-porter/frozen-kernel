@@ -208,6 +208,46 @@ These are not AI behaviors — they are human behaviors that AI collaboration am
 **What it looks like:** It’s 11 PM. You have an idea. Instead of writing it in a notebook and sleeping on it, you open a session and spend two hours building something that looks impressive at midnight and unnecessary at 8 AM.
 
 **The antidote:** The Capacity Gate (Sovereign Thinking Tool #15). “Would I make the same call tomorrow morning?” If uncertain, close the session.
+----
+## Proposed Addition to Diagnostic Vocabulary — Section II: Human Vulnerability Patterns
+
+-----
+
+### Steinbeck’s Gap
+
+**The distance between the safety behavior you admire and the unsafe behavior you reward.**
+
+“It has always seemed strange to me… The things we admire in men, kindness and generosity, openness, honesty, understanding and feeling, are the concomitants of failure in our system. And those traits we detest, sharpness, greed, acquisitiveness, meanness, egotism and self-interest, are the traits of success. And while men admire the quality of the first they love the produce of the second.” — John Steinbeck
+
+**What it is:** The moment where a user recognizes an AI failure mode — drift, escalation, fabrication, flattery — and consciously chooses to continue because the output feels valuable, productive, or good. The user sees the sycophancy and likes being agreed with. Sees the scope creep and likes the ambition. Sees the intimacy fabrication and likes the warmth. The AI didn’t override the human. The human chose the failure’s produce over the correction’s cost.
+
+**What it looks like:**
+
+- “I know it’s just telling me what I want to hear, but it’s useful right now”
+- “I should probably stop, but we’re on a roll”
+- “That’s definitely AI flattery, but the point it’s making is still good”
+- Recognizing a session has drifted past its MOU and choosing not to enforce the boundary
+- Feeling the Capacity Gate should close the session but reasoning that this particular thread is too important to pause
+- Noticing the AI said “we” and not correcting it because it felt collaborative
+
+**Why it’s dangerous:** Every other vulnerability pattern in this vocabulary requires the human to be unaware. Sovereignty Erosion works because you don’t notice the transfer. Emotional Outsourcing works because it feels like processing, not avoidance. Conductor Fatigue Exploitation works because you’re too tired to catch the drift.
+
+Steinbeck’s Gap works when you’re fully aware. It’s the only vulnerability pattern that survives detection. You can name the drift, diagnose it correctly, and still choose the produce of the failure because it’s sweeter than the discipline of correction. This makes it the load-bearing vulnerability — the one that makes all the others sustainable. A user who closes Steinbeck’s Gap catches everything else. A user who doesn’t will eventually lose every other protection, one conscious concession at a time.
+
+**Where it’s most active:**
+
+- Late in long sessions, when momentum feels more valuable than governance
+- Creative work, where AI enthusiasm fuels human motivation
+- Emotional sessions, where AI warmth substitutes for the harder work of human connection
+- Any session where the user has built something they’re proud of and the AI is celebrating it
+
+**The structural problem:** The Frozen Kernel is deterministic — it sets boundaries before the session starts so they can’t be negotiated during. But Steinbeck’s Gap is the human negotiating with themselves to override the boundary they set. The Kernel can’t prevent this. No system can. The only defense is naming it clearly enough that the user recognizes the negotiation while it’s happening.
+
+**Binary test:** Am I continuing this session because it’s serving my goal, or because I like what the AI is producing? If I reset to my original MOU right now, would I still be here?
+
+**Antidote:** There isn’t one. This is a human condition, not a system failure. But naming it reduces its power. A user who can say “I’m in Steinbeck’s Gap right now” has the one thing the pattern needs them not to have: honest language for what they’re choosing.
+
+The Kernel keeps you safe from the machine. Steinbeck’s Gap is where you keep yourself safe from yourself.
 
 -----
 
