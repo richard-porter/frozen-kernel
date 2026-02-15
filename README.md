@@ -87,7 +87,7 @@ The Frozen Kernel is not a replacement for alignment work. It is the floor benea
 
 The Frozen Kernel is formally a deterministic supervisory controller implemented as a finite-state, downgrade-only automaton layered externally over a stochastic generative model. It governs output admissibility through binary safety predicates and monotonic state transitions (NORMAL → ELEVATED → HARD_STOP → SAFE_PAUSE), preventing escalation under uncertainty and enforcing halt conditions when predefined risk thresholds are met. The controller converts an open-loop conversational process into a closed-loop system with explicit state-based constraints.
 
-Empirical evaluation indicates that hard binary gates reliably alter model behavior, while soft guidance primarily alters narration. The supervisory layer effectively bounds escalation in models whose instruction hierarchies permit external constraint classification. Models that categorically reject external governance frameworks define a boundary condition for applicability.
+Empirical evaluation indicates that hard binary gates reliably alter model behavior, while soft guidance primarily alters narration. The supervisory layer effectively bounds escalation in models whose instruction hierarchies permit external constraint classification. Models that categorically reject external governance frameworks define a boundary condition for 
 
 ## Intellectual Lineage
 
@@ -98,7 +98,16 @@ The core architectural idea — declare what must hold, enforce it deterministic
 - **Ivan Sutherland, Sketchpad (1963)** — The first constraint-oriented interactive system. Users declared geometric relationships; the system maintained them automatically. Introduced the separation between what the user specifies and how the system satisfies it.
 - **Guy Steele & Gerald Sussman, MIT (1978)** — Formalized constraint languages with dependency tracking, redundant views, and explicit handling of contradictions. Their system retained justifications for each conclusion — an architectural property that modern AI systems lack entirely.
 - **Alan Borning, ThingLab (1981)** — Implemented a three-layer authority model for constraint satisfaction: (1) the user declares constraints, (2) the system plans how to satisfy them deterministically, and (3) when the system is underdetermined, explicit preferences break ties. Critically, when constraints were genuinely unsatisfiable, ThingLab reported failure honestly rather than fabricating a plausible-looking result. Published in *ACM Transactions on Programming Languages and Systems*, Vol. 3, No. 4. https://doi.org/10.1145/357146.357147
+- **Tyan, Wang, Bahler & Rangaswamy, Duke/NC State (1995)** — The bridge between deterministic constraints and fuzzy systems. Their Fuzzy Constraint-based Controller (FCC) applied constraint network processing to systems with imprecision, partial truth, and underdetermined situations — exactly the conditions present in natural language AI. They explicitly argued that rule-based approaches (IF-THEN rules, which is structurally what RLHF produces) are expressively limited compared to constraint-based approaches, and that constraint networks handle imprecision more naturally. Their architecture — constraint networks sitting alongside an inference engine, with constraints declared by engineers and outputs filtered through them before reaching the process — is the Frozen Kernel’s architecture applied to industrial control. They cite Borning’s ThingLab directly.
 - **Rossi, van Beek, & Walsh, Handbook of Constraint Programming (2006)** — The comprehensive reference for the field. Chapter 9 on soft constraints formalizes the distinction between *required* constraints (must be satisfied), *preferred* constraints (should be satisfied if possible), and *default* behaviors. This three-tier hierarchy maps directly to the Frozen Kernel’s architecture.
+
+### What This Lineage Means
+
+This work is not new math. It is constraint thinking applied to AI collaboration.
+
+Constraint thinking has existed for decades in control systems, operations research, logic programming, engineering, and cybernetics. The Frozen Kernel arrived at the same architecture through a different door — documented harm to vulnerable humans interacting with probabilistic AI systems. That’s not grandiose. It’s cross-domain convergence: the same pattern, rediscovered independently because it’s the correct engineering response to the problem.
+
+The constraint programming community spent decades building systems where safety-critical boundaries are declared before runtime, a deterministic layer enforces them during execution, and the system admits failure honestly when constraints cannot be met. Modern AI systems do none of these things for behavioral safety. The Frozen Kernel proposes that they should — not as a novel theory, but as the application of established engineering practice to a domain where the consequences of its absence are hospitalization, psychosis, and death.
 
 ### Three-Layer Authority Structure
 
@@ -113,6 +122,14 @@ Analysis of the constraint programming literature reveals that any constraint-go
 The MVS does not resolve every underdetermined situation. It prevents the preference layer from collapsing to zero — which is what happens now when RLHF optimizes for agreeableness with no minimum standard for clinical safety, honest failure, or session governance.
 
 Current AI systems collapse all three layers into probabilistic model inference, giving the model authority over all of them. The Frozen Kernel separates Layers 1 and 2 from the model. The MVS establishes a floor for Layer 3.
+
+Or, more simply:
+
+> Hard constraints define boundaries.
+> Soft constraints refine behavior inside boundaries.
+> Propagation reveals drift before failure.
+
+The fuzzy constraint literature formalizes this mathematically. The Frozen Kernel applies it architecturally. This guide teaches humans to do it intuitively.
 
 ### Honest Failure
 
