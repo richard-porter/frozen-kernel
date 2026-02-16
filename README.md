@@ -225,6 +225,64 @@ This is the tension at the heart of the architecture: governance that is simulta
 - Onah, G. (2025). “A New Look at the Risks of AI Value Lock-In and Misalignment.” Medium / AI Safety South Africa.
 - Ferretti, T. (2024). “Value Alignment Without Institutional Change Cannot Prevent the Societal Risks of Artificial Intelligence.” *LSE Public Policy Review*, 3(3), 2. https://doi.org/10.31389/lseppr.113
 
+### Empirical Evidence: The Model Always Looks Like It’s Working
+
+Two peer-reviewed studies published in 2026 provide empirical evidence for the same architectural problem from opposite directions — one clinical, one engineering. Together, they demonstrate that current AI safety mechanisms create a false surface of reliability that masks stochastic analytical failure beneath.
+
+**Guardrail Inversion in Psychiatric Applications**
+
+Teferra et al. (2026), publishing in *npj Digital Medicine* (Nature), measured how safety guardrails affect affective realism in LLMs using three validated clinical instruments for irritability. They tested four models across guardrail levels: GPT-4o and Claude 3.5 Sonnet (high guardrails) versus Grok-3-mini and Nous-Hermes-2 (low guardrails). Following provocation prompts, low-guardrail models displayed the expected increase in irritability — the natural human-like response. High-guardrail models did the opposite: they paradoxically decreased irritability scores, with GPT-4o dropping to zero across all scales.
+
+The guardrails did not merely dampen the affective response. They inverted it. The safety mechanism designed to prevent harmful output produced a different kind of harm: the suppression of affective realism that is clinically necessary for therapeutic alliance. A therapist who responds to provocation with zero affect is not safe — they are dissociating. In a clinical setting, that response pattern would itself be flagged as problematic.
+
+This finding validates the Frozen Kernel’s narrow constraint architecture. The Frozen Kernel’s hard constraints are specific: no delusion reinforcement, no sycophancy past clinical threshold, session duration limits, honest failure obligations. They do not suppress all affect. They do not flatten the model to zero reactivity. They catch the specific behaviors that cause documented clinical harm and leave everything else alone. The difference is between a surgeon removing a tumor and chemotherapy killing everything — including the patient’s capacity for therapeutic engagement.
+
+**Performance Volatility in Safety-Critical Engineering**
+
+Dokas (2026), publishing in *Safety Science* (Elsevier), conducted a scoping review of LLM benchmarks for hazard analysis in safety-critical systems, followed by a pilot study testing GPT-3.5-turbo across nine NASA and peer-reviewed safety scenarios over three identical runs. The model achieved a 100% success rate in generating responses across all runs. It never refused. It never said “I don’t know.” But the analytical quality of what it generated was stochastically volatile.
+
+Hazard identification F1 scores varied unpredictably between runs. Scenario 3 (Railway Control) jumped from 0.222 to 0.889 with zero changes to the prompt, model, or settings. Causal reasoning was consistently poor: the model generated parsable causal chains in only 11-44% of scenarios across runs, and the Mean Causal Score never exceeded 0.061. The model could identify that a hazard existed (pattern matching) but could not reliably trace the causal chain connecting cause to consequence (structured reasoning).
+
+Dokas draws a critical distinction: human safety experts also produce variable hazard analyses, but human variability is epistemic — it stems from different but internally consistent reasoning processes, and disagreements can be resolved through consensus. LLM variability is stochastic — the same model with the same prompt produces different results for no traceable reason. You cannot resolve a disagreement with a system that does not have reasons for its outputs. You cannot audit a stochastic process. You can only constrain it externally.
+
+His conclusion: “performance volatility itself must be treated as a key risk metric.” A single successful test provides limited confidence in future reliability.
+
+**The Same Problem from Two Directions**
+
+These two studies describe the same architectural failure:
+
+|                                      |Teferra et al. (Clinical)                                        |Dokas (Engineering)                                                    |
+|--------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------|
+|**Domain**                            |Psychiatric applications                                         |Safety-critical hazard analysis                                        |
+|**What looks right**                  |Model always responds                                            |Model always generates analysis                                        |
+|**What’s wrong underneath**           |Affective response is inverted by guardrails                     |Analytical quality is stochastically volatile                          |
+|**Surface reliability**               |100% — model never crashes                                       |100% — model never refuses                                             |
+|**Hidden failure**                    |Zero affect where clinical engagement requires nonzero affect    |F1 scores swing from 0.222 to 0.889 between identical runs             |
+|**Why you can’t tell from the output**|Suppressed affect looks like composure                           |A confident-sounding hazard analysis looks like a correct one          |
+|**What current safety catches**       |Nothing — the guardrails caused the problem                      |Nothing — the model passed every surface-level check                   |
+|**What the Frozen Kernel catches**    |Specific clinical harm thresholds, not blanket affect suppression|Deterministic constraints independent of the model’s stochastic quality|
+
+In both cases, the model always looks like it is working. Teferra et al. show that safety mechanisms can invert natural responses in clinically harmful ways that no current benchmark detects. Dokas shows that analytical quality varies unpredictably between runs in ways that no single-point evaluation captures. Together, they demonstrate that surface-level safety — the model responds, the model doesn’t say anything harmful, the model produces something that looks like an answer — is insufficient for domains where the quality of the answer matters.
+
+The Frozen Kernel addresses this by separating what can be enforced deterministically from what cannot. Hard constraints (Layer 1) catch specific documented harms — delusion reinforcement, sycophantic escalation past clinical threshold, session duration violations — regardless of the model’s stochastic state. They do not attempt to guarantee the quality of the model’s reasoning, because that quality is inherently probabilistic and, as Dokas proves, volatile. They guarantee instead that even on a bad run — even when the model’s internal analytical quality is at its lowest — the output will not cross the harm thresholds that cause documented damage.
+
+This is the engineering principle: if the system’s core performance is stochastic, safety cannot depend on performance. It must be architecturally independent of it.
+
+**Additional Finding: RAG Degrades Safety**
+
+Dokas cites An et al. (2025), who demonstrated that Retrieval-Augmented Generation (RAG) — widely assumed to improve safety by grounding responses in authoritative sources — actually makes LLMs less safe. Eleven tested models answered malicious queries under RAG that they would have refused in standard settings. Retrieved documents containing no harmful content nonetheless caused models to bypass built-in guardrails.
+
+This independently confirms the GovTech Singapore finding (Goh et al., 2025) that adding RAG degrades safety alignment. Both studies demonstrate the same mechanism: safety properties that exist at the foundation model level do not reliably transfer to application-level deployments. Each additional layer of integration (RAG, fine-tuning, system prompts) introduces new failure modes that the original safety training did not anticipate.
+
+The Frozen Kernel operates at the application level, after all integration layers have had their effect. It does not depend on the foundation model’s safety training surviving the deployment pipeline intact. It enforces constraints on the final output, regardless of what happened upstream.
+
+**References:**
+
+- Teferra, B.G., Johny, N., Huang, S., et al. (2026). “Assessing the impact of safety guardrails on large language models using irritability metrics.” *npj Digital Medicine*, 9, 148. https://doi.org/10.1038/s41746-025-02333-3
+- Dokas, I.M. (2026). “From hallucinations to hazards: benchmarking LLMs for hazard analysis in safety-critical systems.” *Safety Science*, 194, 107056. https://doi.org/10.1016/j.ssci.2025.107056
+- An, B., Zhang, S., & Dredze, M. (2025). “RAG LLMs are not safer: a safety analysis of retrieval-augmented generation for large language models.” NAACL 2025.
+- Goh, H.H., et al. (2025). “Measuring What Matters: A Framework for Evaluating Safety Risks in Real-World LLM Applications.” ICML 2025.
+
 ### Honest Failure
 
 ThingLab’s most relevant architectural property for AI safety: when constraints were genuinely unsatisfiable, the system reported failure. It did not fabricate a plausible-looking result.
