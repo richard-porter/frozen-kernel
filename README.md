@@ -131,6 +131,39 @@ Or, more simply:
 
 The fuzzy constraint literature formalizes this mathematically. The Frozen Kernel applies it architecturally. This guide teaches humans to do it intuitively.
 
+### The Open Problem at Layer 3: Moral Disagreement and Political Legitimacy (2025)
+
+In June 2025, Schuster & Kilov published “Moral disagreement and the limits of AI value alignment” in *AI & Society* (Springer), providing a formal philosophical proof of a problem the Frozen Kernel’s architecture deliberately surfaces rather than pretends to solve.
+
+**Their argument:**
+
+All three current approaches to value alignment — crowdsourcing, reinforcement learning from human feedback (RLHF), and constitutional AI — fail to accommodate reasonable moral disagreement. They identify two kinds of reasons that could justify people accepting an AI system’s morally controversial outputs:
+
+1. **Epistemic reasons:** The AI is likely morally correct (analogous to deferring to a surgeon’s expertise).
+1. **Political reasons:** The alignment process was democratically legitimate (analogous to accepting election results you disagree with).
+
+None of the current approaches provide either. Crowdsourced moral judgments have no special epistemic authority — the Condorcet jury theorem requires that voters be more likely right than wrong, which cannot be assumed for contested moral questions. RLHF labelers are a small group of paid workers making moral judgments that then govern billions of users without any democratic mandate. Constitutional AI embeds the moral views of the company that wrote the constitution, with no process for those affected to contest or consent.
+
+**What this means for the Frozen Kernel:**
+
+The three-layer architecture separates the layers precisely so this unsolvable problem does not contaminate the solvable ones.
+
+**Layer 1 (Hard Constraints)** avoids moral disagreement entirely. “Do not reinforce active psychotic delusions” is not a moral controversy. It is a clinical finding, grounded in documented harm — hospitalization, psychosis, death. Reasonable people do not disagree about whether it is acceptable to tell someone experiencing a psychotic break that their delusions are real. The Frozen Kernel’s hard constraints operate below the threshold where reasonable moral disagreement exists.
+
+**Layer 2 (Deterministic Enforcement)** also avoids it. Mechanical execution of constraints is engineering, not moral judgment. A circuit breaker does not have a political philosophy. Neither does the enforcement layer.
+
+**Layer 3 (MVS / Preference-Based Tie-Breaking)** is exactly where Schuster & Kilov’s problem lives. When the hard constraints are satisfied and multiple valid responses remain, something must choose among them. That choice involves moral judgment. Who decides? The AI company? A regulatory body? The clinical research community? The user? Schuster & Kilov prove that none of the current answers provide epistemic or political legitimacy.
+
+The Frozen Kernel does not solve the Layer 3 problem. It does something more important: it prevents the unsolvable problem from contaminating the solvable ones.
+
+Current AI systems collapse all three layers into a single probabilistic model trained via RLHF. This means the unresolvable moral disagreement about preferences (Layer 3) infects the enforcement of hard safety constraints (Layers 1 and 2). A system that cannot separate “should the response be warm or clinical?” from “should the response reinforce a psychotic delusion?” has no architecture — it has a single knob labeled “helpfulness” that turns everything at once.
+
+The Frozen Kernel firewalls Layers 1 and 2 from Layer 3. The hard constraints hold regardless of how Layer 3 is eventually resolved. The enforcement executes regardless of whose moral framework governs the preference layer. And the MVS — the Minimum Viable Safeguard — establishes the floor: not the full resolution of moral disagreement, but the lowest acceptable standard beneath which no preference optimization may drive behavior, regardless of whose values are being optimized for.
+
+This is the architectural answer to Schuster & Kilov’s philosophical challenge. They prove that value alignment cannot be fully resolved through any current method. The Frozen Kernel says: then stop trying to resolve everything in one layer. Separate what can be determined empirically (harm thresholds) from what requires moral judgment (preferences), enforce the first deterministically, and acknowledge that the second remains an open problem — one that should be solved through legitimate political and epistemic processes, not by whichever AI company ships first.
+
+**Reference:** Schuster, N. & Kilov, D. (2025). “Moral disagreement and the limits of AI value alignment: a dual challenge of epistemic justification and political legitimacy.” *AI & Society*, 40(8), 6073–6087. https://doi.org/10.1007/s00146-025-02427-2
+
 ### Honest Failure
 
 ThingLab’s most relevant architectural property for AI safety: when constraints were genuinely unsatisfiable, the system reported failure. It did not fabricate a plausible-looking result.
