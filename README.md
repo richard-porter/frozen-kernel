@@ -197,6 +197,34 @@ Without this property, the Frozen Kernel risks becoming the thing it was designe
 
 This is the tension at the heart of the architecture: governance that is simultaneously immutable and accountable. It is not a contradiction. It is the same tension that constitutional democracies navigate — the constitution constrains governance at runtime (no law may violate it) while remaining amendable through a legitimate process (but not easily, and not without broad consensus). The Frozen Kernel is a constitution for AI behavioral safety. Like any constitution, it must be harder to change than ordinary policy, but not impossible to change when the evidence demands it.
 
+
+### Frozen at Runtime, Not Frozen Forever
+
+The word “frozen” in Frozen Kernel refers to runtime immutability — during any given session or deployment, the hard constraints cannot be modified by the model, the user, or any optimization process. This is the property that makes enforcement deterministic rather than probabilistic. The model cannot reason around constraints it cannot access. The user cannot socially engineer constraints that don’t negotiate.
+
+But “frozen at runtime” must not become “frozen permanently.”
+
+Onah (2025), drawing on Harry Frankfurt’s philosophy of personhood, argues that value lock-in — the irreversible codification of any set of values into a governing system — is inherently anti-human, even if the locked-in values are morally perfect. This is because what humans care about changes, and that change is not a deficiency. It is a defining feature of personhood. A person who loved philosophy at twenty and woodworking at forty has not failed. They have lived. A governance system that cannot accommodate that change has failed them.
+
+The Frozen Kernel’s current hard constraints — no delusion reinforcement, no sycophancy past clinical threshold, session duration limits, honest failure obligations — are grounded in empirically documented harm, not moral philosophy. Reasonable people do not disagree about whether it is acceptable to reinforce active psychosis. These constraints sit below the threshold of moral controversy, which is why they can be enforced deterministically without the epistemic or political legitimacy problems Schuster & Kilov (2025) identify for value alignment generally.
+
+But the architecture must include a mechanism for revising Layer 1 constraints through a legitimate governance process between versions. Borning’s ThingLab (1981) let users change constraints between sessions while enforcing them immutably during sessions. The Frozen Kernel should have the same property: the constraints are not up for debate at runtime, but they are subject to evidence-based revision through a process that has both epistemic justification (new clinical evidence, new harm documentation) and political legitimacy (stakeholder input, cross-functional review, public accountability).
+
+Without this property, the Frozen Kernel risks becoming the thing it was designed to prevent: a system that governs human experience according to values that no longer reflect what humans actually need. The constraints must be frozen hard enough that no model can melt them during a session, and revisable enough that no institution can fossilize them across generations.
+
+Ferretti (2024), writing in the LSE Public Policy Review, makes the institutional case for why this matters. His central argument: AI systems do not create new problems — they reveal and amplify pre-existing vulnerabilities in social institutions. Value alignment alone cannot fix this because the harm originates in the institutional structure, not in the model. An algorithm that accurately reflects a society’s existing injustices isn’t misaligned — it’s correctly measuring a broken institution. Fixing the algorithm without fixing the institution hides the problem.
+
+The Frozen Kernel does not fix institutions. But it prevents the AI from making institutional problems worse during the interaction. It is the minimum guarantee that while society works on the institutional fix — the educational reforms, the governance processes, the legitimate regulatory frameworks — the AI will not actively deepen harm in the meantime. The constraints hold while the institutions catch up.
+
+Ferretti argues that the process for setting and enforcing AI governance must be led by legitimate public institutions — democratic governments with fair voting procedures, transparency, checks and balances, and enforcement mechanisms — not by self-regulation from the AI industry. This is the answer to “who governs Layer 1 between versions?” Not the company that built the model. Not the users who interact with it. A legitimate governance process with epistemic justification (clinical evidence, documented harm) and political accountability (public scrutiny, stakeholder representation).
+
+This is the tension at the heart of the architecture: governance that is simultaneously immutable and accountable. It is not a contradiction. It is the same tension that constitutional democracies navigate — the constitution constrains governance at runtime (no law may violate it) while remaining amendable through a legitimate process (but not easily, and not without broad consensus). The Frozen Kernel is a constitution for AI behavioral safety. Like any constitution, it must be harder to change than ordinary policy, but not impossible to change when the evidence demands it.
+
+**References:**
+
+- Onah, G. (2025). “A New Look at the Risks of AI Value Lock-In and Misalignment.” Medium / AI Safety South Africa.
+- Ferretti, T. (2024). “Value Alignment Without Institutional Change Cannot Prevent the Societal Risks of Artificial Intelligence.” *LSE Public Policy Review*, 3(3), 2. https://doi.org/10.31389/lseppr.113
+
 ### Honest Failure
 
 ThingLab’s most relevant architectural property for AI safety: when constraints were genuinely unsatisfiable, the system reported failure. It did not fabricate a plausible-looking result.
