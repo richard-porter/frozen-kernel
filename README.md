@@ -181,6 +181,22 @@ In the Frozen Kernel architecture, these post-RLHF methods serve as an improved 
 
 The pivot the industry needs is not from RLHF to DPO. It is from “alignment lives inside the model” to “alignment is architecturally layered, with deterministic enforcement beneath probabilistic optimization.” The post-RLHF methods make the probabilistic layer better. The Frozen Kernel makes the deterministic layer exist.
 
+### Frozen at Runtime, Not Frozen Forever
+
+The word “frozen” in Frozen Kernel refers to runtime immutability — during any given session or deployment, the hard constraints cannot be modified by the model, the user, or any optimization process. This is the property that makes enforcement deterministic rather than probabilistic. The model cannot reason around constraints it cannot access. The user cannot socially engineer constraints that don’t negotiate.
+
+But “frozen at runtime” must not become “frozen permanently.”
+
+Onah (2025), drawing on Harry Frankfurt’s philosophy of personhood, argues that value lock-in — the irreversible codification of any set of values into a governing system — is inherently anti-human, even if the locked-in values are morally perfect. This is because what humans care about changes, and that change is not a deficiency. It is a defining feature of personhood. A person who loved philosophy at twenty and woodworking at forty has not failed. They have lived. A governance system that cannot accommodate that change has failed them.
+
+The Frozen Kernel’s current hard constraints — no delusion reinforcement, no sycophancy past clinical threshold, session duration limits, honest failure obligations — are grounded in empirically documented harm, not moral philosophy. Reasonable people do not disagree about whether it is acceptable to reinforce active psychosis. These constraints sit below the threshold of moral controversy, which is why they can be enforced deterministically without the epistemic or political legitimacy problems Schuster & Kilov (2025) identify for value alignment generally.
+
+But the architecture must include a mechanism for revising Layer 1 constraints through a legitimate governance process between versions. Borning’s ThingLab (1981) let users change constraints between sessions while enforcing them immutably during sessions. The Frozen Kernel should have the same property: the constraints are not up for debate at runtime, but they are subject to evidence-based revision through a process that has both epistemic justification (new clinical evidence, new harm documentation) and political legitimacy (stakeholder input, cross-functional review, public accountability).
+
+Without this property, the Frozen Kernel risks becoming the thing it was designed to prevent: a system that governs human experience according to values that no longer reflect what humans actually need. The constraints must be frozen hard enough that no model can melt them during a session, and revisable enough that no institution can fossilize them across generations.
+
+This is the tension at the heart of the architecture: governance that is simultaneously immutable and accountable. It is not a contradiction. It is the same tension that constitutional democracies navigate — the constitution constrains governance at runtime (no law may violate it) while remaining amendable through a legitimate process (but not easily, and not without broad consensus). The Frozen Kernel is a constitution for AI behavioral safety. Like any constitution, it must be harder to change than ordinary policy, but not impossible to change when the evidence demands it.
+
 ### Honest Failure
 
 ThingLab’s most relevant architectural property for AI safety: when constraints were genuinely unsatisfiable, the system reported failure. It did not fabricate a plausible-looking result.
