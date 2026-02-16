@@ -177,6 +177,28 @@ The inference budget framework gives this cross-platform variation a formal voca
 
 Jacob, A.P., Gupta, A., & Andreas, J. (2024). “Modeling Boundedly Rational Agents with Latent Inference Budgets.” International Conference on Learning Representations (ICLR). https://news.mit.edu/2024/building-better-ai-helper-start-modeling-irrational-behavior-humans-0419
 
+### Independent Validation: Application-Level Safety Testing (2025)
+
+In July 2025, researchers at GovTech Singapore published “Measuring What Matters: A Framework for Evaluating Safety Risks in Real-World LLM Applications” (Goh, Khoo, Iskandar, Chua, Tan, & Foo — ICML 2025, arXiv:2507.09820). Their findings independently validate the problem the Frozen Kernel addresses:
+
+- Fine-tuning on benign datasets degrades safety alignment even without malicious intent.
+- Adding RAG components makes LLMs less safe.
+- Small changes to system prompts compromise safety.
+- Application-level safety behavior differs significantly from foundation model safety behavior.
+- “It is a well-accepted fact that it is impossible to provide theoretical guarantees for safeguarding LLMs.”
+- “A perfect score does not imply zero risk.”
+
+Their framework provides taxonomies, adversarial testing, and safety scoring — measurement tools for answering “how unsafe is this application?” They built two platforms: Litmus (testing) and Sentinel (guardrails).
+
+What they do not provide is an architectural answer to the question their own findings raise. If model-level safety is insufficient, if application components degrade alignment, and if theoretical guarantees are impossible within probabilistic systems — then what?
+
+The Frozen Kernel is the architectural answer. It is not a test. It is not a guardrail. It is a deterministic constraint layer that executes before output reaches the user. Litmus measures. Sentinel filters probabilistically. The Frozen Kernel enforces deterministically. It sits beneath both.
+
+Their taxonomy of safety risks (undesirable content, specialized advice, political content) maps to the Frozen Kernel’s constraint categories. Their severity levels map to the tiered enforcement model. Their acknowledgment that refusals can serve as a practical proxy for safety is a description of honest failure — the same property Borning’s ThingLab implemented in 1981.
+
+**Reference:** Goh, J.Y., Khoo, S., Iskandar, N., Chua, G., Tan, L., & Foo, J. (2025). “Measuring What Matters: A Framework for Evaluating Safety Risks in Real-World LLM Applications.” *ICML 2025*. https://arxiv.org/abs/2507.09820
+
+
 ## License & Attribution
 
 This work is released for public benefit. Attribution appreciated but not required.
