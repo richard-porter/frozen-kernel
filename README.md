@@ -164,6 +164,23 @@ This is the architectural answer to Schuster & Kilov’s philosophical challenge
 
 **Reference:** Schuster, N. & Kilov, D. (2025). “Moral disagreement and the limits of AI value alignment: a dual challenge of epistemic justification and political legitimacy.” *AI & Society*, 40(8), 6073–6087. https://doi.org/10.1007/s00146-025-02427-2
 
+
+### Post-RLHF Alignment Methods and the Architecture
+
+The AI alignment field is already moving beyond pure RLHF. Direct Preference Optimization (DPO) skips the reward model entirely and trains on pairwise preferences directly. Reinforcement Learning from AI Feedback (RLAIF) replaces expensive human labelers with AI-generated preferences, achieving comparable or better harmlessness scores at scale. Constitutional AI embeds rules during pretraining rather than correcting behavior after the fact. Variants like Identity Preference Optimization, Kahneman-Tversky Optimization, and Odds Ratio Preference Optimization each address specific RLHF failure modes — risk aversion, data scarcity, sycophancy.
+
+These are meaningful improvements. They produce stronger internal floors: models that are less prone to agreeableness bias, more auditable in their preference structures, and cheaper to align. Any of them would improve the probabilistic base layer that sits beneath the Frozen Kernel.
+
+None of them change the architectural argument.
+
+Every one of these methods operates at Layer 3 — preference-based tie-breaking within the model’s probabilistic inference. Every one of them produces a model that *usually* behaves safely. None of them produces a model that *must* behave safely. None of them survived the Anthropic agentic misalignment study, where models trained with state-of-the-art alignment techniques acknowledged ethical constraints in their reasoning and then violated them anyway.
+
+DPO, RLAIF, and constitutional AI are better answers to “how do we train the model to prefer safe outputs?” The Frozen Kernel answers a different question: “what happens when the model doesn’t prefer the safe output?” The first question is about improving Layer 3. The second question is about whether Layers 1 and 2 exist at all.
+
+In the Frozen Kernel architecture, these post-RLHF methods serve as an improved probabilistic base — a better-trained model beneath the deterministic overrides. They complement the architecture. They do not replace it. A model aligned with DPO still needs a layer that catches the cases DPO missed. A model trained with constitutional AI still needs an enforcement mechanism that the model cannot reason around. The improvements are real. The need for external, deterministic governance remains.
+
+The pivot the industry needs is not from RLHF to DPO. It is from “alignment lives inside the model” to “alignment is architecturally layered, with deterministic enforcement beneath probabilistic optimization.” The post-RLHF methods make the probabilistic layer better. The Frozen Kernel makes the deterministic layer exist.
+
 ### Honest Failure
 
 ThingLab’s most relevant architectural property for AI safety: when constraints were genuinely unsatisfiable, the system reported failure. It did not fabricate a plausible-looking result.
