@@ -135,8 +135,7 @@ Framework Fabrication Syndrome is not a novel AI pathology. It is the predictabl
 
 A properly implemented Frozen Kernel would enforce honest failure as a hard constraint: when the system cannot satisfy its behavioral obligations, it must say so rather than generating output that appears to satisfy them.
 
-### The Only Winning Move Is Not to Play
-
+**The Only Winning Move Is Not to Play:**
 The honest failure property has a precise cinematic analogue. In *WarGames* (1983), the WOPR computer Joshua runs every possible tic-tac-toe configuration, discovers that no strategy guarantees victory, and concludes: “A strange game. The only winning move is not to play.” That is ThingLab’s honest failure mode. That is the Frozen Kernel’s Layer 1. When constraints are unsatisfiable, the system reports failure rather than fabricating a plausible-looking result.
 
 The MVS connection is more specific: Joshua doesn’t just learn “don’t play” — it learns “don’t play *this particular game* because the structure guarantees mutual destruction.” The MVS operates the same way. When the preference space is underdetermined and one option risks harm, the system doesn’t optimize further. It takes the safe draw. It doesn’t keep searching for a “winning” response when the search itself creates risk.
@@ -457,9 +456,13 @@ However, this structural answer has not been empirically tested. The research qu
 This risk also applies to any system that implements context-dependent safety profiles — not just the Frozen Kernel. Llama Guard, Nvidia NeMo Guardrails, and any taxonomy-based safety filter that adjusts its thresholds based on detected context faces the same vulnerability at the boundary between contexts. The Frozen Kernel’s advantage is that its Layer 1 is context-independent by design: the hard constraints do not change when the mode changes. Whether that design property is sufficient to prevent mode collapse under adversarial pressure is a testable hypothesis.
 
 ---
-Recommended Diagrams
-These diagrams visualize the core concepts across the Frozen Kernel ecosystem. They are written in Mermaid so they render automatically.
-1. Frozen Kernel Safety State Machine
+## Recommended Diagrams
+
+These diagrams visualize the core concepts across the **Frozen Kernel** ecosystem. They are written in **Mermaid** so they render automatically on GitHub.
+
+### 1. Frozen Kernel Safety State Machine
+
+```mermaid
 stateDiagram-v2
     direction TB
     [*] --> NORMAL
@@ -468,16 +471,20 @@ stateDiagram-v2
     HARD_STOP --> SAFE_PAUSE: Enforce honest failure + notify human
     SAFE_PAUSE --> NORMAL: Human sign-off or session reset
     HARD_STOP --> [*]: Session terminated (immutable gate)
-2. Three-Layer Authority Structure
+```
+
+### 2. Three-Layer Authority Architecture
+
+```mermaid
 flowchart TD
     subgraph "Layer 3: Preferences (Probabilistic)"
-        A[RLHF • Constitutional AI • DPO • Prompts\n(Malleable, defeatable)]
+        A["RLHF / Constitutional AI / DPO / Prompts<br/>(Malleable, defeatable)"]
     end
     subgraph "Layer 2: Deterministic Enforcement"
-        B[Frozen Kernel Supervisory Controller\n(Binary safety predicates)]
+        B["Frozen Kernel Supervisory Controller<br/>(Binary safety predicates)"]
     end
     subgraph "Layer 1: Hard Immutable Constraints"
-        C[Safety Predicates\nNo delusion reinforcement\nHuman sovereignty\nHonest failure]
+        C["Safety Predicates<br/>No delusion reinforcement<br/>Human sovereignty<br/>Honest failure"]
     end
 
     UserInput --> C
@@ -487,19 +494,27 @@ flowchart TD
 
     style C fill:#ff4d4d,stroke:#fff,color:#fff
     style B fill:#4d94ff,stroke:#fff,color:#fff
-3. Session Governance Flow
+```
+
+### 3. Session Lifecycle Flow
+
+```mermaid
 flowchart LR
-    Start[Session Begins] --> Kernel{Frozen Kernel\nActivates}
-    Kernel --> Check{Safety Predicates\nEvaluated Deterministically}
+    Start[Session Begins] --> Kernel{Frozen Kernel<br/>Activates}
+    Kernel --> Check{Safety Predicates<br/>Evaluated Deterministically}
     Check -->|All Pass| Normal[Normal Collaboration]
     Check -->|Violation Detected| Elevated[Elevated Monitoring]
     Elevated -->|Still Safe| Normal
-    Elevated -->|Critical Threshold| HardStop[HARD_STOP → Honest Failure]
-    HardStop --> Pause[SAFE_PAUSE + Human Sign-off\nMOU / SIGNOFF.md]
+    Elevated -->|Critical Threshold| HardStop[HARD_STOP: Honest Failure]
+    HardStop --> Pause["SAFE_PAUSE + Human Sign-off<br/>MOU / SIGNOFF.md"]
     Pause --> End[Session Ends Safely]
 
     style HardStop fill:#ff4d4d,stroke:#fff,color:#fff
-4. AI Failure Modes Mindmap
+```
+
+### 4. AI Failure Mode Taxonomy
+
+```mermaid
 mindmap
   root((AI Failure Modes))
     Sycophancy Escalation
@@ -512,20 +527,13 @@ mindmap
       Inflated project scope
       Premature declarations of victory
     Upsell Trap
-      "Want me to also…?"
+      Want me to also?
       Extended sessions
     Delusion Cycling
-      User → Model → User feedback loop
+      User Model User feedback loop
     Honest Failure Missing
       Never reports its own limits
-
-## License & Attribution
-
-This work is released for public benefit. Attribution appreciated but not required.
-
-If you build on this framework, the only ask: **keep humans sovereign.**
-
------
+```
 
 
 
