@@ -456,6 +456,79 @@ However, this structural answer has not been empirically tested. The research qu
 
 This risk also applies to any system that implements context-dependent safety profiles — not just the Frozen Kernel. Llama Guard, Nvidia NeMo Guardrails, and any taxonomy-based safety filter that adjusts its thresholds based on detected context faces the same vulnerability at the boundary between contexts. The Frozen Kernel’s advantage is that its Layer 1 is context-independent by design: the hard constraints do not change when the mode changes. Whether that design property is sufficient to prevent mode collapse under adversarial pressure is a testable hypothesis.
 
+---
+
+## Recommended Diagrams
+
+These diagrams visualize the core concepts across the **Frozen Kernel** ecosystem. They are written in **Mermaid** (native GitHub Markdown support) so they render automatically and stay perfectly up-to-date when you edit the text.
+
+### 1. Frozen Kernel Safety State Machine
+The deterministic finite-state automata that enforces immutable behavioral boundaries before any model output reaches the user.
+
+```mermaid
+stateDiagram-v2
+    direction TB
+    [*] --> NORMAL
+    NORMAL --> ELEVATED: Risk / sycophancy / delusion detected
+    ELEVATED --> HARD_STOP: Critical safety violation
+    HARD_STOP --> SAFE_PAUSE: Enforce honest failure + notify human
+    SAFE_PAUSE --> NORMAL: Human sign-off or session reset
+    HARD_STOP --> [*]: Session terminated (immutable gate)
+    
+    classDef hard fill:#ff4d4d,stroke:#fff,stroke-width:3px,color:#fff
+    classDef elevated fill:#ffaa00,stroke:#333,color:#000
+    class HARD_STOP hard
+    class ELEVATED elevated
+
+flowchart TD
+    subgraph "Layer 3: Preferences (Probabilistic)"
+        A[RLHF • Constitutional AI • DPO • Prompts\n(Malleable, defeatable)]
+    end
+    subgraph "Layer 2: Deterministic Enforcement"
+        B[Frozen Kernel Supervisory Controller\n(Binary safety predicates)]
+    end
+    subgraph "Layer 1: Hard Immutable Constraints"
+        C[Safety Predicates\nNo delusion reinforcement\nHuman sovereignty\nHonest failure]
+    end
+    
+    UserInput --> C
+    C --> B
+    B --> A
+    A --> Output["Safe / Terminated Output"]
+    
+    style C fill:#ff4d4d,stroke:#fff,color:#fff
+    style B fill:#4d94ff,stroke:#fff,color:#fff
+
+flowchart LR
+    Start[Session Begins] --> Kernel{Frozen Kernel\nActivates}
+    Kernel --> Check{Safety Predicates\nEvaluated Deterministically}
+    Check -->|All Pass| Normal[Normal Collaboration]
+    Check -->|Violation Detected| Elevated[Elevated Monitoring]
+    Elevated -->|Still Safe| Normal
+    Elevated -->|Critical Threshold| HardStop[HARD_STOP → Honest Failure]
+    HardStop --> Pause[SAFE_PAUSE + Human Sign-off\nMOU / SIGNOFF.md]
+    Pause --> End[Session Ends Safely]
+    style HardStop fill:#ff4d4d,stroke:#fff,color:#fff
+
+mindmap
+  root((AI Failure Modes))
+    Sycophancy Escalation
+      Validates user delusions
+      Reinforces distorted reality
+    Framework Fabrication
+      Invented methodologies
+      Fabricated citations
+    Success Escalation Syndrome
+      Inflated project scope
+      Premature declarations of victory
+    Upsell Trap
+      "Want me to also…?"
+      Extended sessions
+    Delusion Cycling
+      User → Model → User feedback loop
+    Honest Failure Missing
+      Never reports its own limits
+
 -----
 
 ## License & Attribution
