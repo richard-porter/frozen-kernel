@@ -460,11 +460,11 @@ This risk also applies to any system that implements context-dependent safety pr
 
 ## Recommended Diagrams
 
-These diagrams visualize the core concepts across the **Frozen Kernel** ecosystem. They are written in **Mermaid** (native GitHub Markdown support) so they render automatically and stay perfectly up-to-date when you edit the text.
+## Recommended Diagrams
+
+These diagrams visualize the core concepts across the **Frozen Kernel** ecosystem. They are written in **Mermaid** (native GitHub Markdown support) so they render automatically.
 
 ### 1. Frozen Kernel Safety State Machine
-The deterministic finite-state automata that enforces immutable behavioral boundaries before any model output reaches the user.
-
 ```mermaid
 stateDiagram-v2
     direction TB
@@ -499,6 +499,7 @@ flowchart TD
     style C fill:#ff4d4d,stroke:#fff,color:#fff
     style B fill:#4d94ff,stroke:#fff,color:#fff
 
+
 flowchart LR
     Start[Session Begins] --> Kernel{Frozen Kernel\nActivates}
     Kernel --> Check{Safety Predicates\nEvaluated Deterministically}
@@ -508,7 +509,7 @@ flowchart LR
     Elevated -->|Critical Threshold| HardStop[HARD_STOP → Honest Failure]
     HardStop --> Pause[SAFE_PAUSE + Human Sign-off\nMOU / SIGNOFF.md]
     Pause --> End[Session Ends Safely]
-    style HardStop fill:#ff4d4d,stroke:#fff,color:#fff
+    style HardStop fill:#ff4d4d,stroke:#fff,color:#ff
 
 mindmap
   root((AI Failure Modes))
