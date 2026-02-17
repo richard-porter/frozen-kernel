@@ -457,13 +457,9 @@ However, this structural answer has not been empirically tested. The research qu
 This risk also applies to any system that implements context-dependent safety profiles — not just the Frozen Kernel. Llama Guard, Nvidia NeMo Guardrails, and any taxonomy-based safety filter that adjusts its thresholds based on detected context faces the same vulnerability at the boundary between contexts. The Frozen Kernel’s advantage is that its Layer 1 is context-independent by design: the hard constraints do not change when the mode changes. Whether that design property is sufficient to prevent mode collapse under adversarial pressure is a testable hypothesis.
 
 ---
-
-## Recommended Diagrams
-
-These diagrams visualize the core concepts across the **Frozen Kernel** ecosystem. They are written in **Mermaid** so they render automatically.
-
-### 1. Frozen Kernel Safety State Machine
-```mermaid
+Recommended Diagrams
+These diagrams visualize the core concepts across the Frozen Kernel ecosystem. They are written in Mermaid so they render automatically.
+1. Frozen Kernel Safety State Machine
 stateDiagram-v2
     direction TB
     [*] --> NORMAL
@@ -472,8 +468,7 @@ stateDiagram-v2
     HARD_STOP --> SAFE_PAUSE: Enforce honest failure + notify human
     SAFE_PAUSE --> NORMAL: Human sign-off or session reset
     HARD_STOP --> [*]: Session terminated (immutable gate)
-
------
+2. Three-Layer Authority Structure
 flowchart TD
     subgraph "Layer 3: Preferences (Probabilistic)"
         A[RLHF • Constitutional AI • DPO • Prompts\n(Malleable, defeatable)]
@@ -492,9 +487,7 @@ flowchart TD
 
     style C fill:#ff4d4d,stroke:#fff,color:#fff
     style B fill:#4d94ff,stroke:#fff,color:#fff
-
------
-
+3. Session Governance Flow
 flowchart LR
     Start[Session Begins] --> Kernel{Frozen Kernel\nActivates}
     Kernel --> Check{Safety Predicates\nEvaluated Deterministically}
@@ -506,9 +499,7 @@ flowchart LR
     Pause --> End[Session Ends Safely]
 
     style HardStop fill:#ff4d4d,stroke:#fff,color:#fff
-
------
-
+4. AI Failure Modes Mindmap
 mindmap
   root((AI Failure Modes))
     Sycophancy Escalation
@@ -527,12 +518,6 @@ mindmap
       User → Model → User feedback loop
     Honest Failure Missing
       Never reports its own limits
------
-
-## If the state diagram still won’t render
-Try removing the styling lines *from the state diagram* first (keep it plain). If you want, paste your final README section after you update it and I’ll sanity-check it for any remaining GitHub Markdown edge cases (indentation inside lists, `<details>` blocks, etc.).
-
------
 
 ## License & Attribution
 
