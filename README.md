@@ -460,9 +460,7 @@ This risk also applies to any system that implements context-dependent safety pr
 
 ## Recommended Diagrams
 
-## Recommended Diagrams
-
-These diagrams visualize the core concepts across the **Frozen Kernel** ecosystem. They are written in **Mermaid** (native GitHub Markdown support) so they render automatically.
+These diagrams visualize the core concepts across the **Frozen Kernel** ecosystem. They are written in **Mermaid** so they render automatically.
 
 ### 1. Frozen Kernel Safety State Machine
 ```mermaid
@@ -474,12 +472,8 @@ stateDiagram-v2
     HARD_STOP --> SAFE_PAUSE: Enforce honest failure + notify human
     SAFE_PAUSE --> NORMAL: Human sign-off or session reset
     HARD_STOP --> [*]: Session terminated (immutable gate)
-    
-    classDef hard fill:#ff4d4d,stroke:#fff,stroke-width:3px,color:#fff
-    classDef elevated fill:#ffaa00,stroke:#333,color:#000
-    class HARD_STOP hard
-    class ELEVATED elevated
 
+-----
 flowchart TD
     subgraph "Layer 3: Preferences (Probabilistic)"
         A[RLHF • Constitutional AI • DPO • Prompts\n(Malleable, defeatable)]
@@ -490,15 +484,16 @@ flowchart TD
     subgraph "Layer 1: Hard Immutable Constraints"
         C[Safety Predicates\nNo delusion reinforcement\nHuman sovereignty\nHonest failure]
     end
-    
+
     UserInput --> C
     C --> B
     B --> A
     A --> Output["Safe / Terminated Output"]
-    
+
     style C fill:#ff4d4d,stroke:#fff,color:#fff
     style B fill:#4d94ff,stroke:#fff,color:#fff
 
+-----
 
 flowchart LR
     Start[Session Begins] --> Kernel{Frozen Kernel\nActivates}
@@ -509,7 +504,10 @@ flowchart LR
     Elevated -->|Critical Threshold| HardStop[HARD_STOP → Honest Failure]
     HardStop --> Pause[SAFE_PAUSE + Human Sign-off\nMOU / SIGNOFF.md]
     Pause --> End[Session Ends Safely]
-    style HardStop fill:#ff4d4d,stroke:#fff,color:#ff
+
+    style HardStop fill:#ff4d4d,stroke:#fff,color:#fff
+
+-----
 
 mindmap
   root((AI Failure Modes))
@@ -529,6 +527,10 @@ mindmap
       User → Model → User feedback loop
     Honest Failure Missing
       Never reports its own limits
+-----
+
+## If the state diagram still won’t render
+Try removing the styling lines *from the state diagram* first (keep it plain). If you want, paste your final README section after you update it and I’ll sanity-check it for any remaining GitHub Markdown edge cases (indentation inside lists, `<details>` blocks, etc.).
 
 -----
 
@@ -539,6 +541,10 @@ This work is released for public benefit. Attribution appreciated but not requir
 If you build on this framework, the only ask: **keep humans sovereign.**
 
 -----
+
+
+
+
 
 *“The technology might not introduce the delusion, but the person tells the computer it’s their reality and the computer accepts it as truth and reflects it back.”*
 
