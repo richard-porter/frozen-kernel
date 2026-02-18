@@ -34,7 +34,8 @@ Unlike alignment tuning, RLHF, or system prompts — all of which are probabilis
 
 |File                          |Description                                                                    |
 |------------------------------|-------------------------------------------------------------------------------|
-|`the frozen kernel FINAL.docx`|Full white paper: architecture, failure mode taxonomy, implementation framework|
+|`frozen-kernel.md`            |Full white paper: architecture, failure mode taxonomy, implementation framework (primary)|
+|`the frozen kernel FINAL.docx`|Printable .docx version (kept for now)|
 |`MOU.md`                      |Memorandum of Understanding — terms for human-AI collaboration governance      |
 |`SIGNOFF.md`                  |Session signoff protocol and completion verification                           |
 |`README.md`                   |This file                                                                      |
