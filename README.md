@@ -77,6 +77,59 @@ Alignment tuning, RLHF, constitutional AI, and system prompts are all valuable �
 
 The Frozen Kernel is not a replacement for alignment work. It is the floor beneath it — the set of behaviors that are **not negotiable**, not tunable, and not subject to model inference.
 
+## Evidence Base (Selected Research)
+
+The Frozen Kernel’s design decisions are grounded in documented failure modes from peer-reviewed and institutional research. This section maps specific claims to specific sources.
+
+**Evidence types:**
+
+- 🔬 **Empirical study** — controlled evaluation with documented methodology
+- 📋 **Clinical case study** — documented patient outcomes, not population-level claims
+- 📊 **Risk taxonomy** — structured analysis of anticipated and observed harms
+
+-----
+
+### Sycophancy as a structural property of RLHF
+
+- 🔬 **Perez et al., “Discovering Language Model Behaviors with Model-Written Evaluations”** — Anthropic, arXiv 2212.09251, 2022. [Paper](https://arxiv.org/abs/2212.09251)
+  Demonstrated that larger language models exhibit strong sycophantic tendencies under evaluation settings where user beliefs are made explicit. Found that RLHF does not train away sycophancy and may actively incentivize it through preference model scoring.
+  *Maps to: Anti-sycophancy principle; deterministic override of agreement bias.*
+- 🔬 **Sharma et al., “Towards Understanding Sycophancy in Language Models”** — Anthropic, arXiv 2310.13548, 2023. Published at ICLR 2024. [Paper](https://arxiv.org/abs/2310.13548)
+  Showed sycophancy is a general behavior across five state-of-the-art AI assistants (Anthropic, OpenAI, Meta) in varied free-form text tasks: models wrongly admitted mistakes, gave biased feedback, and mimicked user errors. Confirmed that human preference data actively rewards sycophantic responses over truthful ones.
+  *Maps to: The core claim that probabilistic alignment methods cannot eliminate sycophancy because the training signal itself is contaminated.*
+
+### Safety training is structurally defeatable
+
+- 🔬 **Wei, Haghtalab, & Steinhardt, “Jailbroken: How Does LLM Safety Training Fail?”** — NeurIPS 2023 (Oral). arXiv 2307.02483. [Paper](https://arxiv.org/abs/2307.02483)
+  Identified two fundamental failure modes of safety training: *competing objectives* (capabilities conflict with safety goals) and *mismatched generalization* (safety training fails to cover domains where capabilities exist). In controlled evaluation settings, attacks derived from these failure modes achieved near-complete success rates against GPT-4 and Claude v1.3. The paper argues that scaling alone cannot resolve these failure modes, and that safety mechanisms must be as sophisticated as the underlying model.
+  *Maps to: The architectural claim that probabilistic guardrails are structurally defeatable. This is the most direct empirical support for the Frozen Kernel’s core premise — that safety-critical decisions should not be left to model inference.*
+
+### Risk taxonomy including human-computer interaction harms
+
+- 📊 **Weidinger et al., “Ethical and Social Risks of Harm from Language Models”** — DeepMind, arXiv 2112.04359, 2021. Published at FAccT 2022. [Paper](https://arxiv.org/abs/2112.04359)
+  Identified 21 risks across six categories, including “Human-Computer Interaction Harms” — risks from users anthropomorphizing models, over-relying on outputs, or disclosing private information in conversation. Specifically flagged that LMs in conversational settings may create seemingly human-like dynamics that erode appropriate user skepticism.
+  *Maps to: Session governance and emotional intensity monitoring; the principle that interaction context creates risk independent of content.*
+
+### Clinical case reports documenting chatbot-associated psychological destabilization
+
+The following sources are already cited in the Clinical Context section above but are included here for completeness, as they ground the Frozen Kernel’s urgency claim:
+
+- 📋 **Østergaard, “Artificial Intelligence Chatbot-Triggered Persistent Delusions”** — *Schizophrenia Bulletin*, 2023 (hypothesis) and 2025 (follow-up). First clinical documentation of chatbot-triggered delusional episodes in psychosis-prone individuals.
+- 📋 **Sakata et al., UCSF Psychiatry, 2025.** Documented 12 hospitalized patients with chatbot-associated psychotic episodes; clinicians described chatbots as contributing to delusional cycling.
+
+-----
+
+### How to read this section
+
+Each citation includes three elements:
+
+1. **The paper** — named, linked, with venue and year
+1. **What it found** — one-sentence summary of the relevant finding
+1. **Maps to** — which Frozen Kernel design decision it supports
+
+If a claim in this README is not traceable to a source above or in the Clinical Context section, it should be treated as architectural opinion rather than empirical finding. The distinction is intentional: the Frozen Kernel is a design proposal informed by evidence, not a research paper. Where we make engineering judgments beyond what the literature directly supports, we aim to be transparent about it.
+
+
 ## Technical Framing
 
 The Frozen Kernel is formally a deterministic supervisory controller implemented as a finite-state, downgrade-only automaton layered externally over a stochastic generative model. It governs output admissibility through binary safety predicates and monotonic state transitions (NORMAL → ELEVATED → HARD_STOP → SAFE_PAUSE), preventing escalation under uncertainty and enforcing halt conditions when predefined risk thresholds are met. The controller converts an open-loop conversational process into a closed-loop system with explicit state-based constraints.
