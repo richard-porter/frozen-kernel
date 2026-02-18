@@ -420,8 +420,21 @@ This document incorporates:
 
 All publication gates satisfied.
 
-February 2026
-Silicon Symphony of Sages
-Conducted by Richard Porter
+⸻
+flowchart TB
+    subgraph "Top Layer: ML Pipeline (Competence)"
+        A[Data] --> B[Training]
+        B --> C[Model]
+        C --> D[Deployment]
+        D --> E[Output]
+    end
 
+    E --> F["Frozen Kernel (Deterministic Gate)"]
+
+    subgraph "Bottom Layer: Binary State Machine (Permission)"
+        F --> N[🟢 NORMAL]
+        F --> EL[⚠️ ELEVATED]
+        F --> H[🛑 HARD TRIGGER]
+        F --> SP[⏸ SAFE PAUSE]
+    end
 ⸻
