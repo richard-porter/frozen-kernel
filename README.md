@@ -3,7 +3,9 @@
 **A Deterministic Safety Layer for Probabilistic AI Systems**
 
 Written by the Silicon Symphony of Sages | Conducted by Richard Porter
-
+## Canonical Document
+Read the Markdown version here: [frozen-kernel.md]
+(Printable .docx version also available)
 -----
 
 ## The Problem
