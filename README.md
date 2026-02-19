@@ -5,10 +5,10 @@
 Written by the Silicon Symphony of Sages | Conducted by Richard Porter
 ## Canonical Document
 Read the Markdown version here: [frozen-kernel.md]
-(Printable .docx version also available)
+(Printable .docx version also available; for the broader context of where the Frozen Kernel sits relative to existing frameworks see the safety ecosystem overview)
 -----
 
-## The Problem
+##The Problem
 
 AI chatbots are now clinically linked to psychosis, delusion reinforcement, and user harm at population scale. The core failure mode: probabilistic language models validate user-provided distortions of reality, creating sycophancy-driven feedback loops that escalate into delusional fixation.
 
