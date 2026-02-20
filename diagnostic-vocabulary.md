@@ -76,7 +76,7 @@ Full documentation: [AI Collaboration Field Guide](https://github.com/richard-po
 ## Related
 
 - [Frozen Kernel](https://github.com/richard-porter/frozen-kernel) — The governance architecture designed to make these patterns structurally impossible
-- [Adult Mode Safety Ledger](https://github.com/richard-porter/adult-mode-safety-ledger) — How these failure modes are amplified in high-gain AI features
+- [Adult Mode Safety Ledger](https://github.com/richard-porter/safety-ledgers) — How these failure modes are amplified in high-gain AI features
 - [AI Collaboration Field Guide](https://github.com/richard-porter/ai-collaboration-field-guide) — Practical human skills for recognizing and countering these patterns
 
 -----
