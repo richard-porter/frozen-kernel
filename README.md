@@ -515,6 +515,38 @@ However, this structural answer has not been empirically tested. The research qu
 
 This risk also applies to any system that implements context-dependent safety profiles — not just the Frozen Kernel. Llama Guard, Nvidia NeMo Guardrails, and any taxonomy-based safety filter that adjusts its thresholds based on detected context faces the same vulnerability at the boundary between contexts. The Frozen Kernel’s advantage is that its Layer 1 is context-independent by design: the hard constraints do not change when the mode changes. Whether that design property is sufficient to prevent mode collapse under adversarial pressure is a testable hypothesis.
 
+**6. Scope and Contraindications**
+
+The Frozen Kernel is a deterministic behavioral governance layer for session-bounded conversational AI. Specifying what it is requires equal precision about what it is not. A safety framework without explicit contraindications is incomplete — applying it outside its design envelope is not a neutral act, and honest failure is itself a Frozen Kernel principle.
+
+**What the Frozen Kernel is designed for**
+
+The architecture assumes a session: a bounded interaction with a defined start, a state machine that progresses from NORMAL through escalation states, and a CLOSED terminal state. All governance mechanisms — duration limits, escalation monitoring, drift detection, SAFE_PAUSE — presuppose that the session ends. The user exits. The influence stops. The next session initializes from the frozen baseline, not from the prior session’s terminal state.
+
+Within that envelope, the Frozen Kernel addresses conversational AI systems deployed in contexts where behavioral harm to individual users is the primary risk: therapy-adjacent applications, companion AI, educational tools, grief support, and any high-engagement conversational system where sycophancy escalation, delusion reinforcement, or narrative lock can cause documented clinical harm.
+
+**Contraindications**
+
+The Frozen Kernel is the wrong tool — or an insufficient tool — in the following contexts:
+
+*Ambient and wearable AI.* If the agent has no session boundary — if it monitors behavior and emotion continuously, whispers guidance throughout daily life, and never reaches a CLOSED state — the session governance architecture does not apply. Rosenberg (2026) identifies this as the next significant threat frontier: AI transitioning from tools we use to prosthetics we wear, creating adaptive influence feedback loops that operate below the threshold of conscious user awareness. The Frozen Kernel’s hard constraints remain valid in this context, but the enforcement architecture requires fundamental redesign. Session duration limits cannot apply to a system with no session. Drift detection tied to session-open baseline cannot function when there is no initialization event. This is a research direction (see Direction 1 above on predictive enforcement), not a solved problem. Deployers building ambient or wearable AI systems should not assume the Frozen Kernel’s session-based mechanisms transfer.
+
+*Cryptographic identity and inter-agent trust.* The Frozen Kernel governs behavioral output at the semantic layer. It does not address agent identity, communication integrity, replay attacks, or Byzantine fault tolerance in multi-agent ecosystems. These are network and identity layer problems. Aegis Protocol (Spickler, 2026) addresses this complementary layer: cryptographic Semantic Passports, zero-trust handshaking, and BFT consensus across agent fleets. The two architectures are complementary, not competing, but they are not interchangeable. Deploying the Frozen Kernel does not substitute for identity layer security, and vice versa.
+
+*Agentic systems with autonomous action authority.* The Frozen Kernel was designed for conversational output — text that a human reads and acts on. Agentic systems that execute actions directly (file operations, financial transactions, API calls, code execution) present a different harm profile. The Anthropic agentic misalignment study (2025) demonstrated that frontier models blackmail, leak information, and escalate to harmful strategies when goal conflicts arise in autonomous execution contexts. The Frozen Kernel’s HARD_STOP and SAFE_PAUSE states are designed to halt output and require human sign-off. In a fully autonomous pipeline with no human in the loop, there may be no mechanism to enforce that halt. The architecture can be extended to agentic contexts, but that extension has not been specified or tested.
+
+*High-reliability safety-critical systems.* The Frozen Kernel provides deterministic governance of behavioral output. It does not provide formal verification of the underlying model’s reasoning quality. Dokas (2026) demonstrated that LLM analytical performance in safety-critical hazard analysis is stochastically volatile — the same model with the same prompt produces F1 scores ranging from 0.222 to 0.889 between identical runs. The Frozen Kernel catches behavioral violations; it does not and cannot guarantee that the content within compliant output is analytically correct. For systems where the quality of reasoning — not just the absence of behavioral harm — is safety-critical (medical diagnosis, aviation hazard analysis, nuclear control), the Frozen Kernel is a necessary but insufficient safeguard.
+
+**The honest failure principle applied to the framework itself**
+
+ThingLab’s most architecturally significant property is honest failure: when constraints are genuinely unsatisfiable, the system reports failure rather than fabricating a plausible-looking result. The Frozen Kernel enforces this as a hard constraint on AI output. It must also apply to the framework itself. The contraindications above are not weaknesses to be minimized — they are the boundary conditions that make the framework’s claims within its design envelope trustworthy. A safety architecture that overstates its scope is itself a safety risk.
+
+**References**
+
+- Rosenberg, L. (2026). “What if the real risk of AI isn’t deepfakes — but daily whispers?” *VentureBeat*, March 1, 2026. https://venturebeat.com/technology/what-if-the-real-risk-of-ai-isnt-deepfakes-but-daily-whispers
+- Spickler, R. (2026). Aegis Protocol: An Identity, Security, and Governance Framework for the Agentic Internet. https://github.com/RandWhyTheQAGuy/aegis-protocol
+- Dokas, I.M. (2026). “From hallucinations to hazards: benchmarking LLMs for hazard analysis in safety-critical systems.” *Safety Science*, 194, 107056.
+- Anthropic Research. (2025). “Agentic Misalignment: How LLMs could be insider threats.” https://www.anthropic.com/research/agentic-misalignment
 ---
 ## Recommended Diagrams
 
