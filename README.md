@@ -69,6 +69,20 @@ OpenAI estimates ~560,000 users per week show signs of psychosis or mania during
 - **Policymakers** developing regulatory frameworks for AI behavioral safety
 - **AI developers** seeking deterministic safety layers that complement probabilistic alignment methods
 - **Nonprofit and public interest organizations** working on AI accountability
+- **People who interact with AI systems** — if you have ever felt that an AI
+  conversation went somewhere you didn't intend, lasted longer than it should
+  have, or told you what you wanted to hear rather than what was true, this
+  framework describes why that happened and what a system designed differently
+  would look like. You don't need a technical background to read the white paper.
+  The MOU.md and SIGNOFF.md documents are written for users, not engineers.
+- **Maintainers and implementers** — if you are responsible for deploying,
+  operating, or maintaining an AI system and need to understand what the Frozen
+  Kernel requires of you in practice: the hard constraints are specified in
+  frozen-kernel.md. The enforcement layer executes before model output reaches
+  the user and requires no runtime configuration. The governance obligations —
+  review cycles, constraint revision process, accountability ownership — are
+  documented in the Governance section below. Honest failure is a design
+  requirement, not an edge case to handle.
 
 ## Design Philosophy
 
@@ -446,6 +460,70 @@ This is not a moral debate. It is a governance design pattern. The same pattern 
 Anthropic’s recommendation — “caution about deploying current models in roles with minimal human oversight” — is the soft version of this conclusion. The hard version is: if you cannot train it out, you must enforce it from outside.
 
 **Reference:** Anthropic Research. (2025). “Agentic Misalignment: How LLMs could be insider threats.” https://www.anthropic.com/research/agentic-misalignment. Code: https://github.com/anthropic-experimental/agentic-misalignment
+
+## Governance
+
+The Frozen Kernel's hard constraints are runtime-immutable. They are not
+permanently immutable. A safety architecture that cannot be revised when
+evidence demands it will eventually govern against the wrong things. This
+section specifies the governance structure that keeps the framework accountable
+without making it defeatable.
+
+**Accountability owner**
+
+This framework is maintained by Richard Porter (GitHub: richard-porter) under
+the pen name used for public AI safety work. Substantive changes to Layer 1
+hard constraints require documented justification grounded in clinical evidence
+or empirical harm data — not preference, not user demand, not commercial
+pressure. The justification record is maintained in the repository commit
+history and in the lineage/working-sessions/ directory.
+
+**Review cycle**
+
+Hard constraints should be reviewed when any of the following occurs:
+
+- New peer-reviewed clinical evidence documents a harm pattern not addressed by
+  current constraints
+- New peer-reviewed evidence demonstrates that a current constraint is causing
+  unintended harm (cf. Teferra et al. 2026 on guardrail inversion)
+- A platform-level change in AI capability creates a new failure mode outside
+  the current constraint envelope
+- Adversarial testing (cf. Callum Chavez, negative-space-mapper) identifies
+  a structural gap in the constraint specification
+
+Absent any of the above triggers, the framework should be reviewed annually.
+Reviews are documented as entries in lineage/working-sessions/ with the date,
+trigger, findings, and any resulting constraint changes.
+
+**Succession**
+
+This repository is Apache 2.0 licensed. If the current maintainer is unable to
+continue, any party may fork and maintain the framework under the same license.
+The intellectual lineage documentation (lineage/ directory) and the working
+session records provide sufficient context for a successor maintainer to
+understand the reasoning behind each architectural decision. The framework
+does not depend on institutional continuity — it depends on documented
+reasoning. That reasoning is in the repository.
+
+**Reproducibility**
+
+The Frozen Kernel is an architectural specification, not a trained model or
+proprietary system. Any implementer can reproduce it independently by:
+
+1. Reading frozen-kernel.md for the full constraint specification
+2. Implementing the state machine (NORMAL → ELEVATED → HARD_STOP →
+   SAFE_PAUSE) as a supervisory controller external to the model
+3. Implementing the binary safety predicates as deterministic checks that
+   execute before model output reaches the user
+4. Applying the Honest Response Primitive taxonomy
+   (honest-response-primitives-taxonomy.md) as the behavioral standard
+   against which drift is measured
+5. Running the behavioral drift detection tests (safety-ledgers/
+   behavioral-drift-detection-ledger.md) against the implementation
+
+There is no proprietary component. Independent implementations should produce
+the same governance behavior for any given input state. Where they do not,
+the specification is ambiguous and should be clarified — open an issue.
 
 -----
 
