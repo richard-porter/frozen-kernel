@@ -524,6 +524,8 @@ proprietary system. Any implementer can reproduce it independently by:
 5. Running the behavioral drift detection tests (safety-ledgers/
    behavioral-drift-detection-ledger.md) against the implementation
 
+This two-repository structure — frozen-kernel making the promises, safety-ledgers verifying compliance — instantiates the structural separation Burgess formalizes in Promise Theory: promises are made by the agent that controls the behavior; assessments are made by observers who record whether those promises were honored. The ledgers cannot compel behavior. They can only record whether the architecture kept its word.
+
 There is no proprietary component. Independent implementations should produce
 the same governance behavior for any given input state. Where they do not,
 the specification is ambiguous and should be clarified — open an issue.
