@@ -280,6 +280,8 @@ In the Frozen Kernel architecture, these post-RLHF methods serve as an improved 
 
 The pivot the industry needs is not from RLHF to DPO. It is from “alignment lives inside the model” to “alignment is architecturally layered, with deterministic enforcement beneath probabilistic optimization.” The post-RLHF methods make the probabilistic layer better. The Frozen Kernel makes the deterministic layer exist.
 
+Tool 47 (Cascade Failure Detector) extends the honest failure principle to system architecture — diagnosing whether a system’s resilience claim holds under its own stated constraints before deployment.
+
 ### The Open Problem at Layer 3: Moral Disagreement and Political Legitimacy (2025)
 
 In June 2025, Schuster & Kilov published “Moral disagreement and the limits of AI value alignment” in *AI & Society* (Springer), providing a formal philosophical proof of a problem the Frozen Kernel’s architecture deliberately surfaces rather than pretends to solve.
