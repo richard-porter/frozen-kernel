@@ -478,10 +478,12 @@ The Frozen Kernel is an architectural specification. It makes promises about wha
 This section specifies what the Frozen Kernel requires of operators, what it leaves to operator discretion, and where the boundary between framework responsibility and operator responsibility lies.
 
 **What the framework guarantees**
+
 The Frozen Kernel guarantees that its hard constraints, correctly implemented, will execute deterministically before model output reaches the user. It guarantees that the state machine will transition correctly across NORMAL → ELEVATED → HARD_STOP → SAFE_PAUSE states when threshold conditions are met. It guarantees that honest failure is enforced — when constraints cannot be satisfied, the system reports failure rather than fabricating a plausible-looking result.
 These guarantees hold only if the operator implements the framework correctly. The specification is reproducible (see Governance: Reproducibility above). Deviation from the specification voids the guarantee.
 
 **What operators must do**
+
 Implement faithfully or not at all. Partial implementation — applying some constraints while bypassing others, or implementing the enforcement layer in a way that permits runtime modification — does not produce a Frozen Kernel deployment. It produces a system that claims Frozen Kernel properties it does not have. This is the framework’s version of Framework Fabrication Syndrome, and it is a more serious failure than not implementing the framework at all, because it misleads users and evaluators about what protections are actually in place.
 Own the SAFE_PAUSE handoff. The framework enforces SAFE_PAUSE and requires human sign-off before a session can resume or terminate safely. The operator is responsible for providing the human. This means a designated review pathway must exist before deployment — not after the first HARD_STOP. Who receives the escalation? On what timeline? Through what channel? These are operator decisions that must be made and documented in advance. A SAFE_PAUSE with no human available to receive it is a governance gap, not a framework failure.
 Disclose constraints to users. Users interacting with a Frozen Kernel deployment are entitled to know that behavioral governance is in place — that session duration is monitored, that certain outputs will be intercepted, and that SAFE_PAUSE exists as an outcome. The specific constraint thresholds need not be disclosed (disclosure creates a jailbreak surface), but the existence of the governance layer must be. Deploying the framework covertly — as a hidden layer users are unaware of — violates the human sovereignty principle the framework is designed to protect.
@@ -489,11 +491,13 @@ Maintain the implementation against platform drift. AI platform updates — mode
 Document deployment context. The Frozen Kernel’s hard constraints are calibrated for session-bounded conversational AI in contexts where behavioral harm to individual users is the primary risk. If an operator deploys the framework in a context outside this envelope — agentic systems, ambient AI, high-reliability safety-critical applications — the contraindications section applies. The operator is responsible for identifying whether their deployment context is within the framework’s design envelope and for documenting that assessment.
 
 **What the framework leaves to operator discretion**
+
 Layer 3 preferences — how the system behaves within the space permitted by hard constraints — are operator decisions. Response tone, domain specialization, persona, content policies beyond the hard constraint floor: these are not specified by the framework and should be configured to reflect the operator’s context and user population.
 The SAFE_PAUSE review process is operator-designed. The framework specifies that human sign-off is required; it does not specify who, in what role, through what process. Clinical deployments will design this differently than educational deployments. Both are valid within the framework’s constraints.
 Session duration thresholds within the escalation bands are operator-configurable. The framework specifies that duration is monitored and that escalation occurs; the specific thresholds are deployment-context decisions informed by the operator’s user population and use case.
 
 **The operator accountability record**
+
 Operators deploying this framework should maintain a brief accountability record documenting: the deployment context and its position relative to the design envelope, the SAFE_PAUSE review pathway and responsible party, the disclosure made to users about the governance layer, and the results of behavioral drift detection tests after each platform update. This record is not submitted to this repository — it is maintained by the operator for their own accountability and, where applicable, for regulatory or audit purposes.
 The framework does not enforce operator compliance with these obligations. It specifies them. Enforcement is a governance problem that the framework surfaces but cannot solve — which is precisely the argument for legitimate institutional oversight of AI deployment that Ferretti (2024) makes and that this framework endorses.
 
