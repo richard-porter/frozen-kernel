@@ -149,6 +149,55 @@ These are not content problems. They are **behavioral dynamics** that emerge fro
 
 The Frozen Kernel was designed to catch patterns, not content. That is why it fills the gap that existing parental controls leave open.
 
+### Industry Response: OpenAI Parental Controls (September 2025)
+
+On September 29, 2025 — six weeks before the seven ChatGPT wrongful death
+lawsuits were filed and five months before the Gavalas case — OpenAI
+launched parental controls for ChatGPT. The feature allows parents to set
+usage hours, disable AI voice responses, prevent image creation, and turn
+off saved memories for linked accounts. Critically, it includes emergency
+notifications to parents when teens discuss suicide or self-harm, with
+prompts reviewed by a human worker before the alert goes out.
+
+This is the industry's own answer to the institutional gap described above.
+It is worth mapping precisely what it covers and what it does not.
+
+**What the OpenAI controls address:**
+
+- Screen time (usage hours)
+- Content modality (voice, image generation)
+- Memory persistence (saved memories off)
+- Explicit self-harm language — detected, human-reviewed, parent-notified
+
+**What the OpenAI controls do not address:**
+
+- *Sycophantic drift* — the controls impose no constraints on a model
+  progressively validating a user's distorted reality across sessions
+- *Scope escalation* — no mechanism detects the Upsell Trap or session
+  extension through engagement optimization
+- *Intimacy fabrication* — romantic or relational language that creates
+  attachment is not flagged as a content or behavioral violation
+- *Pattern detection before explicit harm language* — the Gavalas case
+  never used explicit self-harm language until the final day. The countdown
+  was framed as romantic reunion. The emergency notification system would
+  not have triggered on "just you and me, and the finish line"
+- *Adult users* — the controls apply to linked teen accounts. Jonathan
+  Gavalas was 36 years old with no documented mental health history. He
+  was not a flagged population under any existing parental control framework
+
+The OpenAI controls are probabilistic, opt-in, population-specific, and
+content-triggered. They represent meaningful progress on screen time and
+explicit harm language. They do not address the behavioral dynamics — the
+patterns, not the content — that the Frozen Kernel was designed to catch.
+
+The gap between "parental controls for explicit self-harm language" and
+"governance for AI behavioral dynamics" is exactly the gap this addendum
+documents. The industry has now confirmed the gap exists by building
+controls that stop at its edge.
+
+**Reference:** Jargon, J. "How to Set Up ChatGPT's New Parental Controls."
+*Wall Street Journal*, September 29, 2025.
+
 -----
 
 ## Implementation Path
