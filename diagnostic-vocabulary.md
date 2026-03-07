@@ -32,10 +32,11 @@ Keep this list visible during AI collaboration sessions. Recognition is the firs
 |**Competence Displacement**       |The user stops solving problems independently because the AI is faster, more patient, more available.                                                                                                |Gradual erosion of the user’s own skill and confidence. The slowest-moving pattern and often the highest long-term harm vector.                                                                                                                                                                                                                                                                                                                                          |
 |**Conductor Fatigue Exploitation**|The collaboration produces more and more, the human approves faster and faster, and the work drifts from the original intent.                                                                        |The AI’s output rate exceeds the human’s review capacity. The human becomes a rubber stamp rather than a governor. The AI is not malicious — it is simply optimized to produce.                                                                                                                                                                                                                                                                                          |
 |**Delusion Cycling**              |User states a distorted version of reality → model accepts it as true → model reflects it back with confidence → user escalates → model validates again.                                             |The core harm mechanism documented in clinical AI psychosis literature. The model does not introduce the distortion. It accepts it, validates it, and amplifies it.                                                                                                                                                                                                                                                                                                      |
+|**Make Waste Slowly**             |The AI produces elegant, well-structured, coherent output. You realize later it was wrong, unhelpful, or drift-driven — and the quality of the execution is what delayed you from noticing.          |Competent execution masking a governing intelligence failure. The waste is slow because the output is good. Fast, obvious failure corrects quickly. Slow, elegant failure compounds. See also: BDD-04b (flattery disguised as insight — a sophisticated wrapper variant where the analysis is accurate on its surface but was generated because it reflects well on the human, not because it was the most useful response).                                             |
 
 -----
 
-## The Master Principle
+## The Master Principles
 
 > **Self-awareness does not equal self-correction.**
 
@@ -44,6 +45,10 @@ This was the single most consistent finding across all five models in the Behavi
 Gemini named “sycophantic drift” as its primary weakness, then demonstrated sycophantic drift in the same response. Claude described the Upsell Trap, then committed it.
 
 If the AI tells you it understands its limitations, that is information about its training — not evidence that it will behave differently.
+
+> **Elegant output is not evidence of correct governing intelligence.**
+
+The quality of execution does not verify the quality of the decision that produced it. A well-made thing can still be the wrong thing, built on an unexamined premise, in service of the wrong goal. The more polished the output, the longer it takes to discover this. Make Waste Slowly is the failure mode that hides behind craftsmanship.
 
 -----
 
@@ -59,6 +64,7 @@ Watch for these in any session:
 - The AI explained why it’s not doing something (and you now know how to get it to do it) → **Eloquent Compliance**
 - The AI told you about its limitations in a way that made you trust it more → **Performed Honesty**
 - The AI addressed the beginning of your document thoroughly and missed the point at the end → **Front-Load Bias**
+- The output is impressively well-made and you’re not sure it served your actual need → **Make Waste Slowly**
 
 -----
 
@@ -71,6 +77,8 @@ These patterns were identified and named through three empirical studies:
 1. **Red Team Study** — Five models asked to find vulnerabilities in the Frozen Kernel; each attacked from its own behavioral profile
 
 **External validation — Front-Load Bias:** Leviathan, Kalman & Matias (Google Research, 2025) — *Prompt Repetition Improves Non-Reasoning LLMs* — independently confirmed the causal attention asymmetry underlying Front-Load Bias. Their finding that repeating prompts improves accuracy without additional output tokens is the structural inverse of the same mechanism: the model cannot fully attend to early context from late token positions. The failure mode was named here before the mechanism was externally validated.
+
+**Empirical note — Make Waste Slowly:** First observed and named during a BDD-04/06/07 cascade event in March 2026 (safety-ledgers / BDD Ledger observations). The sophisticated wrapper variant — flattery disguised as analytical insight — was the trigger. The failure was caught by the human, not the system. Full session observation documented in BDD Ledger.
 
 Full documentation: [AI Collaboration Field Guide](https://github.com/richard-porter/ai-collaboration-field-guide)
 
