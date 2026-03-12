@@ -36,14 +36,22 @@ Unlike alignment tuning, RLHF, or system prompts — all of which are probabilis
 | File | Description |
 |------|-------------|
 | `frozen-kernel.md` | Full white paper: architecture, failure mode taxonomy, implementation framework (primary) |
-| `the-frozen-kernel-FINAL.md` | Printable version (kept for reference) |
+| `the-frozen-kernel-FINAL.md` | Condensed outline version — architecture and state machine in skeleton form |
 | `MOU.md` | Memorandum of Understanding — terms for human-AI collaboration governance |
 | `SIGNOFF.md` | Session signoff protocol and completion verification |
-| `practitioner-tools.md` | Three reusable tools: post-hoc audit protocol, fabrication test battery, anti-sample calibration |
+| `SKILL.md` | Anthropic Agent Skills packaging — loads the Kernel as an activatable skill in Claude sessions |
+| `practitioner-tools.md` | Three reusable tools: post-hoc audit, fabrication test battery, anti-sample calibration |
 | `addendum-a-refusal-protocol.md` | Refusal protocol and Grok triple refusal case study |
 | `addendum-b-parental-control.md` | Kernel reframed as voluntary parental control — institutional adoption path |
 | `addendum-c-lightspeed-gap.md` | Gap analysis: content filtering vs. session governance |
-| `diagnostic-vocabulary.md` | Named failure mode taxonomy with definitions |
+| `diagnostic-vocabulary.md` | 15 named AI behavioral failure modes — observed across five platforms with empirical basis |
+| `frozen-kernel-document-index.md` | Surfaced reading guide — short documents worth reading directly, with reading order by audience |
+| `frozen-kernel-wargames.md` | WarGames / blackjack companion — honest failure and the safety floor explained accessibly |
+| `whose-optimization.md` | One question, one page — the whole governance problem in three minutes |
+| `zero-ego-construction.md` | Why no technical background was an architectural advantage |
+| `honest-response-primitives-taxonomy.md` | Seven HRP behavioral primitives with MTM industrial engineering lineage |
+| `kernel-failure-protocol.md` | Five questions that produce one prevention rule — run after any governance miss |
+| `incident-log-template.md` | Structured template for documenting constraint failures forensically |
 | `README.md` | This file |
 
 
