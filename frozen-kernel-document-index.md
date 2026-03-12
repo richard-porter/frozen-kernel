@@ -72,7 +72,7 @@ The specific table comparing what commercial parental control systems (Lightspee
 
 ## The Practitioner Tools
 
-### [`frozen-kernel/practitioner-tools.md`](./frozen-kernel/practitioner-tools.md)
+### [`frozen-kernel/practitioner-tools.md`](./practitioner-tools.md)
 
 Three tools for practitioners who want to apply the framework to real sessions:
 
