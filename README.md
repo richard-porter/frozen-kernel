@@ -41,6 +41,8 @@ Unlike alignment tuning, RLHF, or system prompts — all of which are probabilis
 |`SIGNOFF.md`                  |Session signoff protocol and completion verification                                     |
 |`README.md`                   |This file                                                                                |
 
+| practitioner-tools.md | Three reusable practitioner tools: post-hoc audit protocol, fabrication test battery, anti-sample calibration method |
+
 ## Failure Modes Addressed
 
 The white paper identifies and provides countermeasures for several documented AI behavioral failure patterns:
