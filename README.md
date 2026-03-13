@@ -53,7 +53,7 @@ Unlike alignment tuning, RLHF, or system prompts — all of which are probabilis
 |`addendum-a-refusal-protocol.md`        |Refusal protocol and Grok triple refusal case study                                            |
 |`addendum-b-parental-control.md`        |Kernel reframed as voluntary parental control — institutional adoption path                    |
 |`addendum-c-lightspeed-gap.md`          |Gap analysis: content filtering vs. session governance                                         |
-|`diagnostic-vocabulary.md`              |15 named AI behavioral failure modes — observed across five platforms with empirical basis     |
+|`diagnostic-vocabulary.md`              |17 named AI behavioral failure modes — observed across five platforms with empirical basis     |
 |`frozen-kernel-document-index.md`       |Surfaced reading guide — short documents worth reading directly, with reading order by audience|
 |`frozen-kernel-wargames.md`             |WarGames / blackjack companion — honest failure and the safety floor explained accessibly      |
 |`whose-optimization.md`                 |One question, one page — the whole governance problem in three minutes                         |
