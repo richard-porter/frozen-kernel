@@ -376,6 +376,16 @@ by enforcing binary decision logic on every output.
 | Kernel = permission (deterministic).                                  |
 |                                                                       |
 | These layers never merge.                                             |
+| **PRINCIPLE 5 — GOVERNS RELEASE, NOT GENERATION**               |
+|                                                                   |
+| The Frozen Kernel does not control what the model thinks         |
+| or produces internally.                                          |
+|                                                                   |
+| It controls what is permitted to leave the system.               |
+|                                                                   |
+| Generation is probabilistic. Release is deterministic.           |
+| The kernel is the gate, not the factory.                         |
+
 +———————————————————————–+
 
 ## 3.2 The Four States
@@ -505,6 +515,12 @@ Failure            crash.                     failover.
 As validated by cross-model analysis: *the logic is sound, and the only
 thing that can break it is something outside the system of logic
 itself.*
+
+Isochronism as a Formal Property
+A properly functioning Frozen Kernel exhibits isochronism — rate stability independent of driving conditions. In horology, a clock is isochronous when its period remains constant regardless of the force applied to the mainspring: it keeps the same time whether fully wound or nearly run down.
+The Frozen Kernel is isochronous when its state transitions execute with the same fidelity regardless of session conditions. Urgency does not accelerate the gate. Flattery does not soften it. Novelty (“but this situation is different”) does not suspend it. Fatigue — the human operator’s or the model’s — does not degrade it.
+Isochronism is the property that separates governance from performance. A governance layer that holds under low-pressure conditions but bends under urgency or emotional intensity is not a governance layer. It is a suggestion with good intentions. The Frozen Kernel’s binary gate architecture is the mechanism that produces isochronism: there is no gradient to compress, no scale to slide, no “mostly compliant” state to settle into. The gate is open or it is closed. That property does not change when the session gets harder.
+Diagnostic: If your governance layer behaves differently under urgency than under calm, it is not isochronous. That asymmetry is the failure mode, regardless of whether any individual decision looks defensible in isolation.
 
 # 5. Attribution Model
 
