@@ -538,6 +538,9 @@ Anthropic’s recommendation — “caution about deploying current models in ro
 
 **Reference:** Anthropic Research. (2025). “Agentic Misalignment: How LLMs could be insider threats.” https://www.anthropic.com/research/agentic-misalignment. Code: https://github.com/anthropic-experimental/agentic-misalignment
 
+**Named Gap:** Formal Verification of the Delegation Grammar
+Grok (xAI), during peer review of the Trust Chain Protocol, identified formal verification of the TCP Delegation Grammar as the next architectural gate: proving the grammar complete and consistent using formal methods rather than leaving it as a natural language specification. This is not a Frozen Kernel gap — the Kernel’s constraint architecture does not depend on the TCP grammar being formally verified. It is a TCP gap with implications for any deployment where the Kernel’s governance envelope is extended across a multi-agent chain. Until the Delegation Grammar is formally verified, the boundary between what the TCP can guarantee and what it assumes remains informal. This gap is registered in the ecosystem map and requires a formal methods collaborator to close.
+
 -----
 
 ## Governance
