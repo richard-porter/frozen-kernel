@@ -553,6 +553,11 @@ Their taxonomy of safety risks (undesirable content, specialized advice, politic
 
 **Reference:** Goh, J.Y., Khoo, S., Iskandar, N., Chua, G., Tan, L., & Foo, J. (2025). “Measuring What Matters: A Framework for Evaluating Safety Risks in Real-World LLM Applications.” *ICML 2025*. https://arxiv.org/abs/2507.09820
 
+**Experiment 0:** The Taller Shell Stylometric Session (March 2026)
+A human-governed, AI-assisted manuscript (~90,000 words) was run through the Taller Shell Tell Engine (v2.1) — a stylometric rubric built from the WSJ “AI-Generated Writing Is Everywhere” analysis (Shapiro, March 5, 2026). The manuscript scored strongly human-leaning on every substantive dimension: object persistence, metaphor evolution, thematic control, strong opinion, concrete specificity. One flag triggered: over-cleanliness — the prose lacked the scar tissue typical of solo drafting.
+This result is the empirical basis for the Sovereignty Paradox diagnostic entry in the AI Collaboration Field Guide. It demonstrates the Frozen Kernel’s governance claim in reverse: a session where the Kernel’s sovereignty preservation properties held throughout produced output that pattern-matching heuristics misread as synthetic. The detector penalized successful governance. The correct response is not to degrade quality — it is architectural documentation of human governing intelligence, which is what the Dimensional Authorship framework provides.
+Full documentation: ai-collaboration-field-guide/sovereignty-paradox.md.
+
 ### The Developer’s Own Evidence: Agentic Misalignment (2025)
 
 In June 2025, Anthropic published “Agentic Misalignment: How LLMs could be insider threats” — a study that stress-tested 16 frontier models from Anthropic, OpenAI, Google, Meta, xAI, and other developers in simulated corporate environments. The findings constitute the strongest existing argument for the Frozen Kernel’s architectural necessity.
