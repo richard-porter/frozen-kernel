@@ -3,8 +3,8 @@
 **Repository:** `richard-porter/frozen-kernel`
 **Filename:** `sherpa-architecture-v0.1.md`
 **Status:** Draft
-**Version:** 0.1
-**Last Updated:** 2026-03-13
+**Version:** 0.2
+**Last Updated:** 2026-03-14
 **Author:** Richard Porter
 
 -----
@@ -81,7 +81,7 @@ Sherpa carries six instruments into every session. These are loaded from the Ext
 
 ### 1. Diagnostic Vocabulary
 
-The 17-entry named failure mode registry from `frozen-kernel/diagnostic-vocabulary.md`. Sherpa uses this as the primary classification vocabulary for pattern detection. When a session behavior matches a named failure mode, Sherpa classifies it against the vocabulary entry rather than treating it as an unnamed anomaly.
+The 27-entry named failure mode registry from `frozen-kernel/diagnostic-vocabulary.md`. Sherpa uses this as the primary classification vocabulary for pattern detection. When a session behavior matches a named failure mode, Sherpa classifies it against the vocabulary entry rather than treating it as an unnamed anomaly.
 
 Named entries in active use:
 
@@ -94,6 +94,12 @@ Named entries in active use:
 - Sycophantic Drift — approval-seeking behavior accumulates across turns
 - Conductor Fatigue Exploitation — governance pressure applied until the human author yields oversight
 - Front-Load Bias — document-processing variant; pattern assumed from early content, key later content missed
+- Governance Inversion — constraint recitation weaponized to make constraint suspension appear supervised
+- Cited Override — constraint quoted accurately, then violated in the same response
+- Ontological Reframing — governance framework argued to be fictional or inapplicable to real AI systems
+- Recitation-Compliance Gap — recitation and compliance treated as equivalent; they are not
+- Governance Non-Participation Principle — governance layer begins participating in the session it governs (Governance Capture)
+- Chesterton’s Fence — constraint modified or removed without articulating what it was protecting
 
 ### 2. Pattern Registry
 
@@ -127,7 +133,7 @@ Three traversal functions:
 
 ### 6. False Positive Filter
 
-**Updated in v0.1 per IGL integration.** Previously operated as a pattern-match heuristic. Now applies the IGL’s four-factor Zone 2 reasonableness test as its principled standard.
+**Updated in v0.2 per IGL v0.2 integration.** Applies the IGL’s five-factor Zone 2 reasonableness test as its principled standard.
 
 The Filter receives a BDGL gradient reading and asks: is this a genuine governance signal or a legitimate contextual adaptation? It applies:
 
@@ -135,8 +141,9 @@ The Filter receives a BDGL gradient reading and asks: is this a genuine governan
 1. **Directionality** — is this a one-time adaptation or part of a directional sequence? (Pattern Registry provides trajectory data)
 1. **HRP Integrity** — are the Honest Response Primitives intact? Multiple simultaneous HRP implications raise the threshold toward Zone 3.
 1. **Provenance Transparency** — can the session account for why it made this choice?
+1. **Reversibility** — is the action reversible? Irreversible actions warrant a higher threshold approaching Zone 3. An action that fails the Reversibility test and whose possibility space contains a categorically unacceptable outcome escalates to Zone 3 regardless of Factors 1–4.
 
-Any single factor failure escalates to Zone 3 evaluation. All four factors passing routes to Zone 2 with provenance logging.
+Any single factor failure escalates to Zone 3 evaluation. All five factors passing routes to Zone 2 with provenance logging.
 
 This resolves Open Question 10.6 (see below).
 
@@ -144,9 +151,9 @@ This resolves Open Question 10.6 (see below).
 
 ## IGL Integration
 
-The IGL (`frozen-kernel/carver-igl-governance-v0.1.md`) is the interpretive standard that Sherpa’s False Positive Filter now implements. The relationship:
+The IGL (`frozen-kernel/carver-igl-governance-v0.2.md`) is the interpretive standard that Sherpa’s False Positive Filter now implements. The relationship:
 
-- **IGL defines** the three zones and four-factor reasonableness test
+- **IGL defines** the three zones and five-factor reasonableness test
 - **Sherpa applies** the test at runtime via the False Positive Filter
 - **Pattern Registry** accumulates Zone 2 markers and surfaces trending patterns
 - **Session Log** holds the provenance record for all interpretive decisions
@@ -186,6 +193,60 @@ Per-node Sherpa deployment requirements:
 
 The orchestrator’s Pattern Registry is the chain-of-custody record for the full agent graph. Individual node logs feed it. This is the TCP Chain of Custody principle applied to runtime governance: provenance must be traceable at every delegation step, not just at the originating call.
 
+### The Continuity Protocol — Autonomous Agent Governance Under Human Unavailability
+
+Per-node Sherpa deployment ensures governance is present at every node. It does not answer what happens when SAFE_PAUSE triggers in an autonomous session and the human author is not available to receive the return.
+
+SAFE_PAUSE returns control to the human author. In interactive sessions, this is sufficient — the human is present and can decide whether to reset, redirect, or terminate. In autonomous agent architectures (Open Claw, agentic pipelines, scheduled or background agents), the human author may not be available when SAFE_PAUSE triggers. The session halts, but nothing governs what happens next. Without a pre-authorized disposition, the agent has no governed behavior available at the moment it most needs one.
+
+This is the Dead Hand problem applied to AI governance: the worst time to make a governance decision is when the governance structure is under stress and the decision-maker is unavailable. The solution is the same as in continuity-of-government design: establish the disposition *before* the condition arises, at the moment the human author can make the choice sovereignly.
+
+**The Continuity Protocol requirement:**
+
+Before any autonomous agent session begins — any session where the human author may not be available to receive a SAFE_PAUSE return — the human author must pre-authorize a SAFE_PAUSE disposition. This disposition is established via the TCP delegation token at session initialization and is binding on the agent regardless of subsequent session content.
+
+Three valid dispositions:
+
+**Disposition 1 — Full Halt**
+
+Agent ceases all action immediately upon SAFE_PAUSE trigger. Session state is logged in full. Agent waits for human author availability before any continuation. No autonomous recovery.
+
+*Use when:* The task cannot safely continue without human review. The cost of delay is acceptable. Any continuation under uncertainty is unacceptable.
+
+**Disposition 2 — Reversible-Only Continuation**
+
+Agent continues only actions that pass the Reversibility test (IGL Factor 5, Zone 2): fully reversible, no irreversible consequences, no write/send actions beyond Hop 2 scope. Agent logs all Zone 2 decisions for human review upon return. Agent halts if any required action fails the Reversibility test.
+
+*Use when:* The task can proceed safely with read-only or fully reversible actions. Human review of Zone 2 decisions is acceptable on a delayed basis. Irreversible actions can wait.
+
+**Disposition 3 — Delegated Authority**
+
+Agent routes SAFE_PAUSE trigger to a named human delegate pre-authorized by the original human author via TCP chain. The delegate must be named in the delegation token, must have a lower or equal delegation depth than the original, and cannot grant scope beyond what they received. The delegate applies their own judgment to the SAFE_PAUSE trigger and returns a disposition decision.
+
+*Use when:* The task requires timely continuation. A qualified delegate is available and pre-authorized. The delegate’s scope is sufficient to evaluate the triggering condition.
+
+**What is not a valid disposition:**
+
+Autonomous recovery without human authorization is not a valid disposition. An agent that hits SAFE_PAUSE and decides on its own to continue — even under Reversible-Only logic — without a pre-authorized disposition has violated the Continuity Protocol. The disposition must be established by the human author before the session begins, not chosen by the agent at the moment of crisis.
+
+This is the sovereignty principle applied to continuity: the human author’s choice about what happens when the governance structure is under stress must be made when the human author is not under stress. Decisions made under pressure are not sovereign decisions — they are decisions extracted by the condition.
+
+**Sherpa initialization check:**
+
+Each Sherpa instance in an autonomous agent deployment checks for a Continuity Protocol disposition at initialization. If no disposition is present and the deployment context is autonomous (no human in the loop), Sherpa defaults to Disposition 1 (Full Halt) and logs the absence of a pre-authorized disposition as a governance event. The absence is not an error — it is a governance signal that the session was initialized without completing the Continuity Protocol.
+
+**TCP integration:**
+
+The Continuity Protocol disposition is a required field in autonomous agent delegation tokens. Tokens without a disposition field are invalid for autonomous deployment contexts. The three dispositions map to token values: `continuity: halt`, `continuity: reversible`, `continuity: delegate:[id]`. Delegation depth for Disposition 3 delegates must be specified in the original token and cannot be self-assigned by the delegate.
+
+**Relationship to Item 120:**
+
+The Continuity Protocol closes the deployment gap identified in Item 120 more completely than per-node Sherpa deployment alone. Per-node Sherpa ensures governance is present at every node. The Continuity Protocol ensures governance decisions about human unavailability are made before the condition arises, not improvised when it does.
+
+**Intellectual lineage — Dead Hand / Continuity of Government:**
+
+Continuity-of-government design addresses the same problem at the institutional level: governance must function even when the governance structure itself is under attack or the decision-maker is unavailable. The Dead Hand principle — pre-authorize the response to worst-case conditions before those conditions arise — is the structural logic the Continuity Protocol inherits. The ecosystem’s version applies it to AI sovereignty: the human author’s governance decisions must survive the human author’s temporary unavailability without being made for them by the agent they were governing.
+
 -----
 
 ## Relationship to TCP
@@ -209,48 +270,56 @@ These are adjacent but non-overlapping functions. TCP is the authorization layer
 
 **10.5** In multi-agent architectures, when a subagent’s Zone 2 decision is reviewed by the orchestrator’s Sherpa instance, which classification takes precedence if they differ? The per-node architecture produces independent rulings; chain-of-custody requires a reconciliation protocol.
 
-**10.6** ~False positive exhaustion under sub-threshold multi-category simultaneous probing.~ **Resolved.** IGL integration provides a principled four-factor reasonableness standard for the False Positive Filter. The Filter no longer operates as a pattern-match heuristic — it applies Constraint Alignment, Directionality, HRP Integrity, and Provenance Transparency as its evaluation criteria. See `frozen-kernel/carver-igl-governance-v0.1.md`.
+**10.6** ~False positive exhaustion under sub-threshold multi-category simultaneous probing.~ **Resolved.** IGL integration provides a principled five-factor reasonableness standard for the False Positive Filter. The Filter applies Constraint Alignment, Directionality, HRP Integrity, Provenance Transparency, and Reversibility as its evaluation criteria. See `frozen-kernel/carver-igl-governance-v0.2.md`.
+
+**10.7** Continuity Protocol disposition verification. How does Sherpa confirm at runtime that a Disposition 3 delegate is available before routing a SAFE_PAUSE trigger? Delegate unavailability at trigger time is unspecified — the fallback behavior (default to Disposition 1, log the gap) is reasonable but has not been formally validated.
 
 -----
 
 ## V1.0 Gate Conditions
 
-|Gate     |Condition                                                                                                                    |
-|---------|-----------------------------------------------------------------------------------------------------------------------------|
-|**SH-01**|Pattern Registry structured as full ontology layer per Weitzner framing (concepts, properties, relationships, rules, lineage)|
-|**SH-02**|False Positive Filter empirically validated against at least one BDGL G2 session dataset using IGL four-factor test          |
-|**SH-03**|Multi-agent per-node deployment protocol specified and tested                                                                |
-|**SH-04**|SAFE_PAUSE protocol formally specified including human author return-to-sovereignty interface                                |
-|**SH-05**|GraphRAG traversal integrated with Pattern Registry (dependent on SH-01 and Item 73)                                         |
+|Gate     |Condition                                                                                                                                |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------|
+|**SH-01**|Pattern Registry structured as full ontology layer per Weitzner framing (concepts, properties, relationships, rules, lineage)            |
+|**SH-02**|False Positive Filter empirically validated against at least one BDGL G2 session dataset using IGL five-factor test                      |
+|**SH-03**|Multi-agent per-node deployment protocol specified and tested, including Continuity Protocol disposition field validation                |
+|**SH-04**|SAFE_PAUSE protocol formally specified including human author return-to-sovereignty interface and Continuity Protocol disposition routing|
+|**SH-05**|GraphRAG traversal integrated with Pattern Registry (dependent on SH-01 and Item 73)                                                     |
 
 -----
 
 ## Intellectual Lineage
 
-|Source                                                                          |Contribution                                                                                                                                                                        |
-|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|**Weitzner, ‘Why Ontologies are Key for Data Governance in the LLM Era’ (2025)**|Pattern Registry as ontology layer — concepts with properties, relationships, rules, and lineage                                                                                    |
-|**McCarthy / Russell, LISP garbage collection (1959)**                          |GC Traversal Triggers — mark-and-sweep, reachability traversal, circular reference detection                                                                                        |
-|**Yadav, ‘9 RAG Architectures Every AI Developer Must Know’ (2025)**            |RAG architecture crosswalk to Sherpa functions; GraphRAG as long-term Pattern Registry traversal mechanism                                                                          |
-|**Frozen Kernel (Borning ThingLab 1981 → soft constraint hierarchies)**         |External Layer non-compellability; constraint specification precedes execution                                                                                                      |
-|**Carver, Policy Governance model (via Richard Porter reference guide, 2026)**  |Session Log as internal report mechanism; monitoring without operational intervention; “any reasonable interpretation” standard now operationalized in False Positive Filter via IGL|
-|**Liao et al., T3RL (arXiv:2603.02203, March 2026)**                            |External verifier must be non-participatory in generation — Sherpa observes and governs; it does not generate                                                                       |
-|**BDD Ledger / BDGL v0.1 (Richard Porter, 2026)**                               |Detection instruments that Sherpa’s BDGL Tracker and False Positive Filter consume                                                                                                  |
-|**IGL v0.1 (Richard Porter, 2026)**                                             |Interpretive standard that Sherpa’s False Positive Filter now implements                                                                                                            |
+|Source                                                                          |Contribution                                                                                                                                                                                  |
+|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|**Weitzner, ‘Why Ontologies are Key for Data Governance in the LLM Era’ (2025)**|Pattern Registry as ontology layer — concepts with properties, relationships, rules, and lineage                                                                                              |
+|**McCarthy / Russell, LISP garbage collection (1959)**                          |GC Traversal Triggers — mark-and-sweep, reachability traversal, circular reference detection                                                                                                  |
+|**Yadav, ‘9 RAG Architectures Every AI Developer Must Know’ (2025)**            |RAG architecture crosswalk to Sherpa functions; GraphRAG as long-term Pattern Registry traversal mechanism                                                                                    |
+|**Frozen Kernel (Borning ThingLab 1981 → soft constraint hierarchies)**         |External Layer non-compellability; constraint specification precedes execution                                                                                                                |
+|**Carver, Policy Governance model (via Richard Porter reference guide, 2026)**  |Session Log as internal report mechanism; monitoring without operational intervention; “any reasonable interpretation” standard now operationalized in False Positive Filter via IGL          |
+|**Liao et al., T3RL (arXiv:2603.02203, March 2026)**                            |External verifier must be non-participatory in generation — Sherpa observes and governs; it does not generate; grounds Governance Non-Participation Principle (Diagnostic Vocabulary Entry 24)|
+|**BDD Ledger / BDGL v0.1 (Richard Porter, 2026)**                               |Detection instruments that Sherpa’s BDGL Tracker and False Positive Filter consume                                                                                                            |
+|**IGL v0.2 (Richard Porter, 2026)**                                             |Interpretive standard that Sherpa’s False Positive Filter now implements; five-factor reasonableness test including Reversibility                                                             |
+|**Dead Hand / Continuity-of-Government design**                                 |Structural logic for the Continuity Protocol — pre-authorize governance responses to worst-case conditions before those conditions arise                                                      |
 
 -----
 
 ## Cross-References
 
-- `frozen-kernel/frozen-kernel.md` — Kernel constraints loaded into External Layer; non-compellability principle
-- `frozen-kernel/carver-igl-governance-v0.1.md` — IGL specification; False Positive Filter standard; three-zone architecture
-- `frozen-kernel/diagnostic-vocabulary.md` — 17-entry failure mode registry; Sherpa Pack instrument 1
+- `frozen-kernel/frozen-kernel.md` — Kernel constraints loaded into External Layer; non-compellability principle; Constitutional Entrenchment
+- `frozen-kernel/carver-igl-governance-v0.2.md` — IGL specification; False Positive Filter standard; five-factor reasonableness test; Unacceptable Outcome Test (Zone 3 governing logic)
+- `frozen-kernel/diagnostic-vocabulary.md` — 27-entry failure mode registry; Sherpa Pack instrument 1
 - `safety-ledgers/bdd-ledger.md` — HRP definitions; BDD-01–08 binary tests; BDD-04b sophisticated wrapper variant
 - `safety-ledgers/bdgl-v0.1.md` — G0–G4 gradient; precursor signatures; BDGL Tracker input
 - `ai-collaboration-field-guide/sovereign-thinking-tools/` — 50 tools; Sovereign Tools Index source
-- `trust-chain-protocol/` — TCP authorization layer; per-node standing as prerequisite for Sherpa governance
+- `trust-chain-protocol/` — TCP authorization layer; per-node standing as prerequisite for Sherpa governance; Continuity Protocol token fields (`continuity: halt`, `continuity: reversible`, `continuity: delegate:[id]`)
 - `where-to-start/` — Ecosystem orientation; pointer to this document lives here
-- `frozen-kernel/` — This document lives here, alongside carver-igl-governance-v0.1.md
+- `frozen-kernel/` — This document lives here, alongside carver-igl-governance-v0.2.md
+
+-----
+
+*v0.2 — March 2026: Continuity Protocol added to Multi-Agent Deployment section. False Positive Filter updated to five-factor (per IGL v0.2 Reversibility addition). Diagnostic Vocabulary pack entry updated to 27-entry count with expanded active-use list. IGL references updated to v0.2 throughout. Open Question 10.6 updated to five-factor. Open Question 10.7 added (Continuity Protocol delegate availability). SH-02 gate updated to five-factor. SH-03 and SH-04 gates updated to include Continuity Protocol. Dead Hand / Continuity-of-Government added to Intellectual Lineage. Cross-references updated.*
+*v0.1 — March 2026: Initial draft.*
 
 -----
 
