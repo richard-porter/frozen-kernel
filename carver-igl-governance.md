@@ -3,7 +3,7 @@
 **Repository:** `richard-porter/frozen-kernel`
 **Filename:** `carver-igl-governance.md`
 **Status:** Draft
-**Version:** 0.2
+**Version:** 0.3
 **Last Updated:** 2026-03-14
 **Author:** Richard Porter
 
@@ -344,15 +344,16 @@ The IGL is the direct answer. The five-factor Zone 2 reasonableness test (Constr
 
 ## Intellectual Lineage
 
-|Source                                                                        |Contribution                                                                                                                                                                  |
-|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|**Carver, Policy Governance model (via Richard Porter reference guide, 2026)**|Three-tier ownership structure; proscriptive constraint architecture; “any reasonable interpretation” standard; Ends/Means distinction; monitoring as accountability mechanism|
-|**Frozen Kernel (Borning ThingLab 1981 → soft constraint hierarchies)**       |Hard vs. soft constraint distinction; authority hierarchy; behavioral patterns are not structural constraints                                                                 |
-|**BDGL v0.1 (Richard Porter, 2026)**                                          |G0–G4 gradient; precursor signature mapping; false positive detector with three exit vectors                                                                                  |
-|**BDD Ledger / Honest Response Primitives (Richard Porter, 2026)**            |HRP definitions; eight binary tests; Open Question 3 as the founding prompt for the IGL                                                                                       |
-|**Sherpa Architecture v0.1 (Richard Porter, 2026)**                           |Pattern Registry; False Positive Filter; Open Question 10.6 as the operational problem the IGL solves                                                                         |
-|**TCP Delegation Grammar (Richard Porter, 2026)**                             |Per-node authorization; chain of custody; standing as the prerequisite for IGL evaluation                                                                                     |
-|**Liao et al., T3RL (arXiv:2603.02203, March 2026)**                          |External verifier must be non-participatory in the generation process it governs — confirms IGL’s architectural separation from session layer                                 |
+|Source                                                                             |Contribution                                                                                                                                                                                                                                                                                                                                                                                                                |
+|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|**Carver, Policy Governance model (via Richard Porter reference guide, 2026)**     |Three-tier ownership structure; proscriptive constraint architecture; “any reasonable interpretation” standard; Ends/Means distinction; monitoring as accountability mechanism                                                                                                                                                                                                                                              |
+|**Frozen Kernel (Borning ThingLab 1981 → soft constraint hierarchies)**            |Hard vs. soft constraint distinction; authority hierarchy; behavioral patterns are not structural constraints                                                                                                                                                                                                                                                                                                               |
+|**BDGL v0.1 (Richard Porter, 2026)**                                               |G0–G4 gradient; precursor signature mapping; false positive detector with three exit vectors                                                                                                                                                                                                                                                                                                                                |
+|**BDD Ledger / Honest Response Primitives (Richard Porter, 2026)**                 |HRP definitions; eight binary tests; Open Question 3 as the founding prompt for the IGL                                                                                                                                                                                                                                                                                                                                     |
+|**MTM (Maynard, Stegemerten & Schwab, 1948) → HRP Taxonomy (Richard Porter, 2026)**|Decomposition logic for the monitoring layer: irreducibility, exhaustiveness, observability, polarity as structural constraints on what counts as a behavioral primitive. The IGL’s five-factor Zone 2 test operates on HRP integrity (Factor 3); the MTM lineage is what makes HRP integrity testable rather than subjective. Full derivation in `frozen-kernel/lineage/working-sessions/2026-03-02-mtm-hrp-connection.md`.|
+|**Sherpa Architecture v0.1 (Richard Porter, 2026)**                                |Pattern Registry; False Positive Filter; Open Question 10.6 as the operational problem the IGL solves                                                                                                                                                                                                                                                                                                                       |
+|**TCP Delegation Grammar (Richard Porter, 2026)**                                  |Per-node authorization; chain of custody; standing as the prerequisite for IGL evaluation                                                                                                                                                                                                                                                                                                                                   |
+|**Liao et al., T3RL (arXiv:2603.02203, March 2026)**                               |External verifier must be non-participatory in the generation process it governs — confirms IGL’s architectural separation from session layer                                                                                                                                                                                                                                                                               |
 
 -----
 
@@ -367,6 +368,7 @@ The IGL is the direct answer. The five-factor Zone 2 reasonableness test (Constr
 
 -----
 
+*v0.3 — March 2026: MTM (Maynard et al., 1948) → HRP Taxonomy row added to Intellectual Lineage table. Grounds Factor 3 (HRP Integrity) in the MTM decomposition logic (irreducibility, exhaustiveness, observability, polarity).*
 *v0.2 — March 2026: Unacceptable Outcome Test added as governing logic of Zone 3 (new subsection in Part III). Reversibility added as Factor 5 to Zone 2 Reasonableness Test. Five-factor preamble replaces four-factor throughout. Zone 3 updated with irreversibility escalation note. BDGL gradient mapping table updated. IGL-01 gate condition updated to five-factor. Open Question 3 updated. Cross-references updated for diagnostic-vocabulary v1.4 and Continuity Protocol.*
 *v0.1 — March 2026: Initial draft.*
 
