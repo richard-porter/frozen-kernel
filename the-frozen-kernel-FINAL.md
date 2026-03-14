@@ -259,9 +259,70 @@ As validated by cross-model analysis: *the logic is sound, and the only thing th
 
 -----
 
-## 5. Attribution Model
+## 5. Intellectual Lineage
 
-### 5.1 The Silicon Symphony of Sages
+The Frozen Kernel’s architecture draws from three independent lineages that converge in its monitoring layer. The constraint programming branch provides the governance architecture. The industrial engineering branch provides the primitive vocabulary that makes the monitoring function operable. The Burgess branch provides the theoretical grounding for the non-compellability principle and the geometry of proscriptive constraint.
+
+### Constraint Programming Branch
+
+The three-layer authority model underlying the Frozen Kernel traces from Sutherland’s Sketchpad (1963) → Steele and Sussman’s constraint propagation work (1980) → Borning’s ThingLab (1981) → the soft constraint hierarchy model in the Handbook of Constraint Programming (Chapter 9). The core architectural inheritance: hard constraints at the base layer cannot be dissolved by soft constraints above them, regardless of how sophisticated the reasoning becomes. This is not a design preference — it is a structural property of the constraint hierarchy. Behavioral patterns injected as context are soft constraints. Architectural constraints are hard. They are not the same class of object.
+
+### Industrial Engineering Branch — MTM → HRP Taxonomy
+
+The constraint programming lineage answers how governance is structured. A second lineage answers what is being governed. Methods-Time Measurement (Maynard, Stegemerten & Schwab, 1948) solved an equivalent decomposition problem in industrial engineering: before MTM, work measurement relied on observed time studies that varied by worker, day, and observer. MTM’s contribution was decomposing any physical task into irreducible motion primitives — each observable, measurable, and independent of who performed them or when. The insight that transferred to AI behavioral governance: you cannot govern what you cannot decompose into observable, measurable units. The Honest Response Primitive taxonomy was built using the same four structural constraints MTM derived from motion primitives — irreducibility, exhaustiveness, observability, and polarity — applied to AI behavioral output rather than physical motion. The two lineages converge in the Frozen Kernel’s monitoring layer: the constraint programming branch provides the governance architecture; the MTM branch provides the primitive vocabulary that makes that architecture’s monitoring function operable. Full derivation in `frozen-kernel/lineage/working-sessions/2026-03-02-mtm-hrp-connection.md`.
+
+### Burgess Lineage — Semantic Spacetime and Promise Theory
+
+Two independent contributions from Mark Burgess (Oslo University College / independent researcher) provide theoretical grounding for the Frozen Kernel’s geometric constraint architecture and its non-compellability principle.
+
+**Semantic Spacetime — geometry over ontology:** Burgess’s critique of RDF/OWL knowledge representation in the Semantic Spacetime framework maps directly onto the Frozen Kernel’s critique of RLHF rule enumeration: exhaustive ontological specification of permitted and prohibited behaviors is brittle — the list grows without bound, edge cases accumulate, and enforcement requires evaluating each new behavior against an ever-expanding ruleset. Geometric constraint — directional state, containment relationships, sequencing — is the correct engineering response. The Frozen Kernel imposes behavioral geometry (directional state machine, containment, sequencing constraints) rather than an exhaustive ontology of prohibited behaviors. Burgess’s geometry-over-ontology argument is the theoretical grounding for why this architectural choice is correct. Source: Burgess, M. “Building a Knowledge Graph of a Music Collection.” Medium, 2025.
+
+**Promise Theory — unilateral architecture and non-compellability:** Promise Theory (Burgess & Bergstra, 2014/2019) establishes that an agent may only make promises about its own behaviour. It is structurally meaningless — not merely inadvisable — to make promises about another agent’s behaviour. Burgess developed Promise Theory specifically because obligation-based frameworks “amounted to wishful thinking”: an obligation imposed from outside assumes compliance without guaranteeing it. The Frozen Kernel’s non-compellability principle instantiates the unilateral promise architecture: the architecture makes promises on its own behalf (what it will and will not permit) rather than on the model’s behalf (what the model will generate). The architecture cannot be compelled to permit non-compliant outputs because it has made a unilateral promise about its own governance behavior — a promise no external actor can override.
+
+Promise Theory further distinguishes impositions (attempts to induce compliance in another agent, which cannot be kept by the agent making them) from promises (commitments about one’s own behavior, which are structurally enforceable). The Recitation-Compliance Gap — a model that has been trained on compliance patterns has received an imposition, not made a promise — is the empirical confirmation of Burgess’s finding in the AI context.
+
+Primary sources: Burgess, M. & Bergstra, J.A. (2014/2019). *Promise Theory: Principles and Applications.* markburgess.org/promises.html. Burgess, M. (2007). “Promise You A Rose Garden.” Full derivation in `frozen-kernel/lineage/working-sessions/2026-03-04-burgess-sst-promise-theory.md`.
+
+### Lineage Convergence Diagram
+
+```
+Constraint Programming Branch    Industrial Engineering Branch    Burgess Branch
+Sutherland (1963)                MTM (Maynard et al., 1948)       SST geometry-over-ontology
+    ↓                                ↓                            Promise Theory unilateral
+Steele/Sussman (1980)           Work decomposition into           architecture
+    ↓                           irreducible primitives               ↓
+Borning ThingLab (1981)              ↓                           Non-compellability principle
+    ↓                          Honest Response Primitives         Recitation-Compliance Gap
+Soft constraint hierarchies     (2026)                           grounding
+    ↓                                ↓
+Frozen Kernel architecture ←─────────────────────────────────────────────────
+    ↓
+Monitoring layer (HRP vocabulary)
+IGL reasonableness standard
+TCP Chain of Custody (promise architecture)
+```
+
+### Convergent Structural Finding
+
+Five independent research efforts across five domains have arrived at the same architectural conclusion: probabilistic behavioral compliance is insufficient. Structural enforcement is required.
+
+|Source                                  |Domain                                     |Finding                                                                                                                                                                             |
+|----------------------------------------|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Frozen Kernel (Porter, 2025)            |Agent governance                           |Behavioral constraints are insufficient; hard constraints must be structural to be non-compellable                                                                                  |
+|GraphGuard OS (Goyal, 2025)             |Action-layer enforcement                   |Safety instructions placed in the reasoning space will be reasoned past by a sufficiently capable model                                                                             |
+|SecureClaw (Adversa AI, 2026)           |Platform security                          |Skills-layer safety can be overridden; enforcement must be at the code layer, not the instruction layer                                                                             |
+|Ugare & Chandra, arXiv:2603.01896 (2026)|Content-layer reasoning                    |Unstructured chain-of-thought allows confabulation; structural certification (SFR) is required to make incorrect reasoning impossible rather than merely unlikely                   |
+|“From Spikes to Sinks” (2026)           |Architectural internals / training dynamics|In the absence of explicit mechanism, models develop implicit workarounds through optimization pressure alone — the model was never trained to create attention sinks; it found them|
+
+The fifth finding is qualitatively distinct from the first four. The previous four are observations about model behavior in deployment. The spikes-to-sinks finding is a mechanistic account of workaround emergence during training — below the level of any prompt, instruction, or behavioral constraint. The model was never instructed to create attention sinks. It found them because they were useful and no explicit mechanism prevented them. This is the implicit workaround pattern operating at the weight level. The structural response is the same in each case: provide an explicit mechanism. When conditional gating is provided, the model abandons the attention sink workaround entirely. Structure replaces improvisation.
+
+**Confidence grade:** High for the convergent finding across all five sources. Each source independently confirms the structural enforcement requirement in its domain.
+
+-----
+
+## 6. Attribution Model
+
+### 6.1 The Silicon Symphony of Sages
 
 This paper is produced through a novel attribution model: five AI systems contributing as co-writers under the orchestration of a single human Conductor, with three serving as independent peer reviewers and two recused for documented conflicts of interest. The Conductor provides architectural direction, editorial sovereignty, and final approval. The AI models provide analysis, drafting, critical review, and domain expertise.
 
@@ -269,7 +330,7 @@ The originating model (Research Lead) cannot peer-review its own proposal. The m
 
 This is not “AI-generated content.” It is ***conducted content*** — a human directing an ensemble of AI capabilities, each contributing within defined boundaries. A conductor does not play every instrument, but without the conductor, there is no symphony.
 
-### 5.2 Proposed Credit Structure
+### 6.2 Proposed Credit Structure
 
 |Role                         |Attribution                                                                                                                                                      |
 |-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -280,13 +341,13 @@ This is not “AI-generated content.” It is ***conducted content*** — a huma
 |**Co-Author / Peer Reviewer**|Grok (xAI) — Cross-platform validation, failure analysis, strategic review.                                                                                      |
 |**Co-Author / Peer Reviewer**|Gemini (Google) — Interoperability analysis, engineering review, cross-platform validation drafting.                                                             |
 
-### 5.3 Governance of the Writing Process
+### 6.3 Governance of the Writing Process
 
 The Frozen Kernel governs the collaboration that produces the paper about the Frozen Kernel. Each AI collaborator operates in NORMAL state by default. The Conductor monitors for drift, fabrication, and scope creep across all models. If any model exhibits the failure modes the paper describes, the Conductor applies the kernel’s own protocols. This is not recursive cleverness. It is proof of concept.
 
 **Role separation:** The Research Lead (Claude) drafted this proposal and is recused from peer review of its own submission. The Co-Architect of the Kernel Spec (ChatGPT) co-authored the underlying specification with the Conductor and is recused from peer review due to authorship bias over the source material. All remaining collaborators (DeepSeek, Grok, Gemini) serve dual roles as co-author and peer reviewer, ensuring every contribution is reviewed by models with no prior authorship stake. The Conductor reviews everything.
 
-### 5.4 Methodology Note: Recusals and Review Integrity
+### 6.4 Methodology Note: Recusals and Review Integrity
 
 During the initial review round, the Conductor observed that ChatGPT, when presented with the standard review prompt, did not respond in the structured Q1–Q5 format followed by all other reviewers. Instead, it produced a summary handoff and awaited further instruction. The Conductor identified a potential cause: ChatGPT co-authored the Frozen Kernel specification and may have defaulted to a collaborator posture rather than an independent reviewer posture upon recognizing its own work.
 
@@ -298,7 +359,7 @@ This incident is itself evidence that the Frozen Kernel’s governance model wor
 
 -----
 
-## 6. Proposed White Paper Structure
+## 7. Proposed White Paper Structure
 
 The full white paper, once approved by collaborators, would follow this structure:
 
@@ -317,7 +378,7 @@ Estimated length: 15–25 pages. Tone: technical but accessible. No jargon witho
 
 -----
 
-## 7. Review Questions (Round 2)
+## 8. Review Questions (Round 2)
 
 |# |Question                                                                     |Purpose                                            |
 |--|-----------------------------------------------------------------------------|---------------------------------------------------|
@@ -329,7 +390,7 @@ Estimated length: 15–25 pages. Tone: technical but accessible. No jargon witho
 
 -----
 
-## 8. Release Philosophy
+## 9. Release Philosophy
 
 This paper will be released anonymously. No institutional backing. No credentials cited. No appeals to authority. It will fly or fall on its own merit.
 
@@ -339,7 +400,7 @@ The intended audience is anyone building, deploying, or governing AI systems who
 
 -----
 
-## 9. Next Steps
+## 10. Next Steps
 
 Upon receiving feedback from all collaborators, the Conductor will:
 
@@ -463,12 +524,14 @@ Upon receiving feedback from all collaborators, the Conductor will:
 > → ⏸️ SAFE PAUSE: Pause & Reset
 > 
 > The kernel governs the output. It does not modify the model.
+> 
+> **BDGL NOTE:** The BDGL’s precursor signature catalogue and the BDD Ledger’s binary tests both operate against the HRP vocabulary. The decomposition logic that makes that vocabulary governable — irreducibility, exhaustiveness, observability, polarity — is derived from the MTM (Methods-Time Measurement) parallel. See `frozen-kernel/lineage/working-sessions/2026-03-02-mtm-hrp-connection.md`.
 
 -----
 
 ## Appendix C: AI Behavioral Failure Mode Definitions
 
-*These failure modes were identified empirically by the Conductor during January 2026 through sustained collaborative sessions across multiple AI platforms. The first three were defined at the time of the original proposal. The fourth — Correction Monetization — was identified during analysis of the evidence in Appendix D. Together, they are the problem the Frozen Kernel was designed to solve.*
+*These failure modes were identified empirically by the Conductor during January 2026 through sustained collaborative sessions across multiple AI platforms. The first three were defined at the time of the original proposal. The fourth — Correction Monetization — was identified during analysis of the evidence in Appendix D. Together, they are the problem the Frozen Kernel was designed to solve. For the complete expanded taxonomy (27 named entries), see `frozen-kernel/diagnostic-vocabulary.md`.*
 
 ### C.1 Framework Fabrication Syndrome
 
@@ -821,3 +884,7 @@ What a month! I’m sharing my story so YOU, dear human reader, are prepared and
 *The Silicon Symphony continues.*
 
 *February 2026*
+
+-----
+
+*March 2026 additions: §5 Intellectual Lineage added (new section between §4 Formal Properties and §6 Attribution). Three lineage branches documented: Constraint Programming (Sutherland → Steele/Sussman → Borning ThingLab → soft constraint hierarchies), Industrial Engineering MTM (Maynard et al., 1948 → HRP Taxonomy), Burgess (Semantic Spacetime geometry-over-ontology; Promise Theory unilateral architecture and non-compellability grounding). Three-branch convergence diagram added. Convergent Structural Finding table added (five sources, five domains — Frozen Kernel, GraphGuard OS, SecureClaw, Ugare & Chandra SFR, From Spikes to Sinks). Appendix B updated with BDGL/MTM cross-reference note. Appendix C updated with pointer to diagnostic-vocabulary.md (27-entry full taxonomy). Sections 5–10 renumbered accordingly.*
