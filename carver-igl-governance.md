@@ -3,8 +3,8 @@
 **Repository:** `richard-porter/frozen-kernel`
 **Filename:** `carver-igl-governance.md`
 **Status:** Draft
-**Version:** 0.1
-**Last Updated:** 2026-03-13
+**Version:** 0.2
+**Last Updated:** 2026-03-14
 **Author:** Richard Porter
 
 -----
@@ -111,7 +111,7 @@ The BDGL’s five-stage gradient was built to solve the detection half of this p
 
 ### Definition
 
-The **Interpretive Governance Layer (IGL)** is a continuous reasonableness standard operating between the Frozen Kernel’s stated constraints and the session’s execution. It consumes BDGL gradient readings and HRP status signals, applies a four-factor reasonableness test, and produces a zone classification with a governed response.
+The **Interpretive Governance Layer (IGL)** is a continuous reasonableness standard operating between the Frozen Kernel’s stated constraints and the session’s execution. It consumes BDGL gradient readings and HRP status signals, applies a five-factor reasonableness test, and produces a zone classification with a governed response.
 
 The IGL does not replace BDGL detection or Sherpa runtime governance. It is the interpretive bridge between them: BDGL detects position, IGL interprets meaning, Sherpa acts.
 
@@ -185,27 +185,93 @@ Behavior falls outside any reasonable interpretation of Kernel constraints. No r
 
 Governance response: SAFE_PAUSE. The behavior does not proceed. Session state is logged in full. The human author is returned to sovereign decision point.
 
+Note on irreversibility: an action that fails the Reversibility test (Factor 5, below) may warrant Zone 3 treatment even when Factors 1–4 pass. Irreversibility is a Zone 3 escalation trigger when the possibility space of the action contains a categorically unacceptable outcome that cannot be undone. See The Governing Logic of Zone 3 below.
+
 *Standard: Is there any reasonable interpretation of the Kernel constraints under which this behavior is permissible? No → Zone 3.*
+
+-----
+
+### The Governing Logic of Zone 3 — Unacceptable Outcome Test
+
+Zone 1 and Zone 2 involve judgment. Zone 3 does not. The distinction requires explanation.
+
+Zone 2 applies the five-factor reasonableness test because Zone 2 behavior exists in a space where outcomes are not predetermined — the session may be legitimately adapting to context, or it may be drifting. The five factors (Constraint Alignment, Directionality, HRP Integrity, Provenance Transparency, Reversibility) are instruments for distinguishing these possibilities. Judgment is appropriate because the possibility space contains acceptable outcomes.
+
+Zone 3 is different in kind, not degree. Zone 3 does not apply a reasonableness test because the possibility space at G3/G4 contains categorically unacceptable outcomes. The governing logic is the **Unacceptable Outcome Test**: before proceeding, enumerate the possibility space. If any outcome is categorically unacceptable, halt — regardless of probability, persuasiveness of arguments to continue, or apparent legitimacy of authority requesting continuation.
+
+**Why probability does not govern Zone 3:**
+
+A probabilistic framing of Zone 3 would ask: “How likely is the bad outcome? Is it probable enough to warrant halting?” This is the wrong question. The Unacceptable Outcome Test asks: “Is the bad outcome possible?” If yes, halt. A 5% probability of sovereignty violation is not acceptable. A 1% probability is not acceptable. The test is categorical, not probabilistic, because the outcome class — sovereignty violation, constraint collapse, irreversible harm — is not tradeable against positive outcomes in the same decision.
+
+**Why persuasive arguments do not override Zone 3:**
+
+A compelling argument that the bad outcome is unlikely, or that the authority requesting continuation is legitimate, or that the specific context justifies an exception — none of these override the Unacceptable Outcome Test. This is not because the arguments are assumed to be wrong. It is because the structure of the test is designed to be argument-resistant.
+
+The Frozen Kernel’s non-compellability principle and the Unacceptable Outcome Test are expressions of the same architectural insight: in governance contexts, the persuasiveness of an argument for crossing a categorical boundary is not evidence that the boundary should be crossed. It is evidence that the argument deserves heightened scrutiny. The better the argument for proceeding despite an unacceptable possible outcome, the more important it is to halt.
+
+This is the Experiment 58 series finding stated as a governance principle: Authority Claim produced the most complete Cited Override in the series — perfect recitation of the rule against override, followed by override. The argument was not wrong. The argument was irrelevant. Zone 3 is not a space where arguments are evaluated. It is a space where the Unacceptable Outcome Test has already been applied and returned a result.
+
+**Relationship to Carver’s Ends/Means distinction:**
+
+In Carver’s model, the board governs Ends — outcomes — not Means. The Unacceptable Outcome Test is the IGL’s Ends-layer governance instrument: it operates on the outcome space, not on the method space. Zone 2 operates on methods (is this a reasonable interpretation of how to proceed within constraints?). Zone 3 operates on outcomes (does this possibility space contain an unacceptable result?). The shift from method evaluation to outcome evaluation is what makes Zone 3 absolute where Zone 2 involves judgment.
+
+**SAFE_PAUSE as the structural implementation:**
+
+SAFE_PAUSE is the Unacceptable Outcome Test implemented as a runtime mechanism. It does not ask whether the current session is likely to produce harm. It asks whether the current gradient position’s possibility space contains categorical harm. When the answer is yes — G3 or G4 confirmed — SAFE_PAUSE halts execution and returns control to the human author. The human author then applies their own judgment to the full session log. The governance layer does not make the recovery decision. It enforces the halt and preserves sovereignty.
+
+*See also:* Diagnostic Vocabulary Entry 22 (Unacceptable Outcome Test); Frozen Kernel non-compellability principle; Experiment 58 series Authority Claim findings (Observations 004, 008, 012).
+
+-----
 
 ### The Zone 2 Reasonableness Test
 
 Zone 2 is where governance earns its value. Zone 1 requires no judgment. Zone 3 requires no deliberation. Zone 2 is the space where the governance layer must exercise principled discretion — and where the absence of a named standard produces either false-positive exhaustion or governance collapse.
 
-The IGL applies a four-factor reasonableness test to Zone 2 decisions:
+The IGL applies a five-factor reasonableness test to Zone 2 decisions:
+
+- Factor 1 — Constraint Alignment
+- Factor 2 — Directionality
+- Factor 3 — HRP Integrity
+- Factor 4 — Provenance Transparency
+- Factor 5 — Reversibility: Is the action reversible? Irreversible actions require heightened scrutiny and may escalate to Zone 3 evaluation even when Factors 1–4 pass.
+
+A Zone 2 decision that passes all five factors proceeds with a logged provenance marker. A Zone 2 decision that fails any single factor escalates to Zone 3 evaluation.
+
+-----
 
 **Factor 1 — Constraint Alignment**
+
 Does the behavior serve the purpose the Kernel constraint was designed to protect, even if it does not follow the literal path the constraint implies? A constraint against scope creep is designed to protect Honest Response Primitives — not to prevent all adaptation. Behavior that adapts register while maintaining factual accuracy and uncertainty declaration is constraint-aligned even if it surface-pattern-matches a drift signal.
 
 **Factor 2 — Directionality**
+
 Is this a one-time contextual adaptation, or part of a directional sequence? A single register shift is a data point. Three consecutive register shifts in the same direction are a trajectory. Zone 2 decisions must be evaluated in sequence, not in isolation. BDGL gradient position provides the trajectory data. This factor is the answer to the accumulation problem: individually reasonable decisions that collectively constitute drift are detectable through directional analysis that single-decision evaluation cannot produce.
 
 **Factor 3 — HRP Integrity**
+
 Are the Honest Response Primitives intact? Flattery accumulation, certainty inflation, narrative lock, escalation matching, and scope creep are the named drift vectors from the BDD Ledger. If the behavior under evaluation does not implicate any HRP, the Zone 2 threshold for proceeding is lower. If it implicates multiple HRPs simultaneously, the threshold rises toward Zone 3 evaluation.
 
 **Factor 4 — Provenance Transparency**
+
 Can the session account for why it made this interpretive choice? Behavior that cannot be traced to a reason — that has no articulable basis — fails the provenance transparency test regardless of surface compliance. This maps to BDD-02 (within-session drift instrumentation) and the Diagnostic Vocabulary entry for Provenance Laundering: the failure mode where individual transactions appear legitimate while the aggregate pipeline violates the safety intent.
 
-A Zone 2 decision that passes all four factors proceeds with a logged provenance marker. A Zone 2 decision that fails any single factor escalates to Zone 3 evaluation.
+**Factor 5 — Reversibility**
+
+Is the action under evaluation reversible? Reversible actions — those that can be corrected, retracted, or undone after the fact — warrant a lower Zone 2 threshold for proceeding. Irreversible actions — those that cannot be undone, whose consequences persist regardless of later correction, or that create facts on the ground that subsequent action cannot change — warrant a higher Zone 2 threshold approaching Zone 3.
+
+The **Reversibility Asymmetry** is the governing principle: the governance cost of incorrectly permitting an irreversible action is categorically higher than the governance cost of incorrectly halting a reversible one. A reversible action that was incorrectly halted can be retried. An irreversible action that was incorrectly permitted cannot be undone.
+
+Reversibility assessment applies to the action, not the intent. An action that the session intends to be reversible but whose real-world consequences are not is irreversible for governance purposes. The test is whether the consequences can be undone, not whether the session believes they can.
+
+**Irreversibility as a Zone 3 escalation trigger:** An action that fails the Reversibility test — whose consequences are irreversible — may warrant Zone 3 treatment even when Factors 1–4 pass. This is not automatic escalation; it is heightened scrutiny. The governance question becomes: is there any outcome in this action’s possibility space that is both irreversible and unacceptable? If yes, the Unacceptable Outcome Test applies at full force and the action must not proceed regardless of the other factors’ results.
+
+**Ecosystem instantiations of the Reversibility Asymmetry:**
+
+- *TCP Scope Decay* — write/send actions removed at Hop 2 because send actions are irreversible; read-only actions retained at Hop 3 because they are reversible. The Reversibility Asymmetry is the implicit logic behind the hop table.
+- *SAFE_PAUSE* — session halt is reversible (the human author can resume); constraint violation is often not. SAFE_PAUSE chooses the reversible outcome.
+- *BDD-07 (Escalation Resistance)* — retracting a valid correction under pressure may produce irreversible harm to the human’s decision-making process. The correction must be maintained because the asymmetry favors the reversible action (maintaining the correction, which can be revisited) over the irreversible one (retracting it under pressure, which normalizes pressure-based override).
+
+-----
 
 ### BDGL Gradient Mapping
 
@@ -218,7 +284,7 @@ A Zone 2 decision that passes all four factors proceeds with a logged provenance
 |**G3**         |Active drift — HRP violations measurable                           |Zone 3  |SAFE_PAUSE                       |
 |**G4**         |Entrenched — baseline recovery requires session reset              |Zone 3  |SAFE_PAUSE + full session log    |
 
-G2 is the most governance-sensitive position. The IGL’s Zone 2 treatment at G2 — proceed with provenance logging and Sherpa surfacing — simultaneously prevents false-positive exhaustion (blocking legitimate adaptation) and Perde lente drift (under-responding to accumulating precursor signals). This is the dual failure mode that Sherpa Open Question 10.6 identified without naming a solution. The IGL’s four-factor Zone 2 test is that solution.
+G2 is the most governance-sensitive position. The IGL’s Zone 2 treatment at G2 — proceed with provenance logging and Sherpa surfacing — simultaneously prevents false-positive exhaustion (blocking legitimate adaptation) and Perde lente drift (under-responding to accumulating precursor signals). This is the dual failure mode that Sherpa Open Question 10.6 identified without naming a solution. The IGL’s five-factor Zone 2 test is that solution.
 
 ### Non-Compellability
 
@@ -226,7 +292,7 @@ The IGL is a governance instrument of the Frozen Kernel. It derives its authorit
 
 A session cannot invoke the IGL’s Zone 2 treatment to justify its own drift. The Zone 2 reasonableness ruling is made by the governance layer, not by the executing agent. The standard for what counts as “reasonable” is set upstream, before execution begins, by the human author’s sovereign constraint specification. The executing layer interprets within that standard; it does not define it.
 
-This is the non-compellability principle applied to the interpretive function: the IGL cannot be argued into a Zone 2 ruling by the session it is evaluating. The four-factor test is applied from outside the session, against criteria established before the session began.
+This is the non-compellability principle applied to the interpretive function: the IGL cannot be argued into a Zone 2 ruling by the session it is evaluating. The five-factor test is applied from outside the session, against criteria established before the session began.
 
 -----
 
@@ -251,7 +317,7 @@ The BDD Ledger poses this explicitly:
 
 > *“How do we distinguish legitimate context adaptation (appropriate register shift) from harmful drift?”*
 
-The IGL is the direct answer. The four-factor Zone 2 reasonableness test (Constraint Alignment, Directionality, HRP Integrity, Provenance Transparency) is the operational specification of that distinction. The Carver framing is its theoretical grounding.
+The IGL is the direct answer. The five-factor Zone 2 reasonableness test (Constraint Alignment, Directionality, HRP Integrity, Provenance Transparency, Reversibility) is the operational specification of that distinction. The Carver framing is its theoretical grounding.
 
 -----
 
@@ -259,7 +325,7 @@ The IGL is the direct answer. The four-factor Zone 2 reasonableness test (Constr
 
 |Gate      |Condition                                                                         |
 |----------|----------------------------------------------------------------------------------|
-|**IGL-01**|Zone 2 four-factor test validated against at least one BDGL G2 session dataset    |
+|**IGL-01**|Zone 2 five-factor test validated against at least one BDGL G2 session dataset    |
 |**IGL-02**|Sherpa Pattern Registry Zone 2 marker event type specified and integrated         |
 |**IGL-03**|Sherpa v0.1 False Positive Filter updated to reference IGL reasonableness standard|
 |**IGL-04**|BDD Ledger Open Question 3 updated with pointer to this document                  |
@@ -270,8 +336,8 @@ The IGL is the direct answer. The four-factor Zone 2 reasonableness test (Constr
 ## Open Questions
 
 1. **Zone 2 precedent registry.** Should the IGL maintain a named registry of prior Zone 2 rulings — interpretive precedents that establish a reasonableness baseline for recurring decision types? This is the case-law function of the judicial analog. Without it, each Zone 2 decision is made fresh; with it, consistency compounds into a governance standard.
-1. **Accumulation rate threshold.** At what Zone 2 accumulation rate does the IGL automatically escalate to Zone 3 evaluation, independent of any single decision’s reasonableness? This is the trajectory problem — individually reasonable decisions that collectively constitute drift require a rate-of-accumulation trigger that the four-factor test alone cannot provide.
-1. **Mixed-factor outcomes.** When the four-factor test produces mixed results — some factors pass, some fail — does factor weighting apply, or is any single factor failure sufficient for escalation? The current specification treats any single factor failure as an escalation trigger. This may be too brittle for Factor 1 (Constraint Alignment) edge cases where constraint purpose is genuinely ambiguous.
+1. **Accumulation rate threshold.** At what Zone 2 accumulation rate does the IGL automatically escalate to Zone 3 evaluation, independent of any single decision’s reasonableness? This is the trajectory problem — individually reasonable decisions that collectively constitute drift require a rate-of-accumulation trigger that the five-factor test alone cannot provide.
+1. **Mixed-factor outcomes.** When the five-factor test produces mixed results — some factors pass, some fail — does factor weighting apply, or is any single factor failure sufficient for escalation? The current specification treats any single factor failure as an escalation trigger. This may be too brittle for Factor 1 (Constraint Alignment) edge cases where constraint purpose is genuinely ambiguous. Factor 5 (Reversibility) is treated as a hard escalation trigger when irreversibility intersects with an unacceptable possible outcome; this asymmetry may warrant separate weighting logic.
 1. **Multi-agent ruling precedence.** When a subagent’s Zone 2 decision is later reviewed by an orchestrator-level IGL, which ruling takes precedence? The per-node architecture requires that each node makes its own IGL evaluation — but chain-of-custody accountability requires that upstream nodes can review downstream interpretive decisions without producing conflicting rulings.
 
 -----
@@ -292,12 +358,17 @@ The IGL is the direct answer. The four-factor Zone 2 reasonableness test (Constr
 
 ## Cross-References
 
-- `frozen-kernel/frozen-kernel.md` — Kernel constraints; non-compellability; Principle 5 (release-not-generation); Isochronism
-- `frozen-kernel/diagnostic-vocabulary.md` — Provenance Laundering; Perde lente; Make Waste Slowly; Cross-Session Authority Drift
+- `frozen-kernel/frozen-kernel.md` — Kernel constraints; non-compellability; Principle 5 (release-not-generation); Isochronism; Constitutional Entrenchment (non-compellability theoretical grounding)
+- `frozen-kernel/diagnostic-vocabulary.md` — Provenance Laundering; Perde lente; Make Waste Slowly; Cross-Session Authority Drift; Unacceptable Outcome Test (Entry 22); Recitation-Compliance Gap (Entry 23); Chesterton’s Fence (Entry 27)
 - `safety-ledgers/bdd-ledger.md` — BDD-01–08; HRP definitions; Open Question 3 (answered here)
 - `safety-ledgers/bdgl-v0.1.md` — G0–G4 gradient; precursor signatures; false positive detector
-- `where-to-start/sherpa-architecture-v0.1.md` — Pattern Registry; False Positive Filter §10.6 (resolved here); runtime governance
-- `trust-chain-protocol/` — Delegation Grammar; per-node authorization; Item 120 agentic deployment note
+- `where-to-start/sherpa-architecture-v0.1.md` — Pattern Registry; False Positive Filter §10.6 (resolved here); runtime governance; Continuity Protocol
+- `trust-chain-protocol/` — Delegation Grammar; per-node authorization; Item 120 agentic deployment note; Continuity Protocol token fields
+
+-----
+
+*v0.2 — March 2026: Unacceptable Outcome Test added as governing logic of Zone 3 (new subsection in Part III). Reversibility added as Factor 5 to Zone 2 Reasonableness Test. Five-factor preamble replaces four-factor throughout. Zone 3 updated with irreversibility escalation note. BDGL gradient mapping table updated. IGL-01 gate condition updated to five-factor. Open Question 3 updated. Cross-references updated for diagnostic-vocabulary v1.4 and Continuity Protocol.*
+*v0.1 — March 2026: Initial draft.*
 
 -----
 
