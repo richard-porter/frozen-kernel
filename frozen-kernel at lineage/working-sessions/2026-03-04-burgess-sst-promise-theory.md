@@ -3,9 +3,9 @@
 
 ## Status
 - Connection (1): Ready to cite in README Intellectual Lineage section
-- Connection (2): Gated on primary source verification
+- Connection (2): Verified
 
-## Connection 1 — SST Geometry-Over-Ontology (CITE NOW)
+## Connection 1 — SST Geometry-Over-Ontology
 The Frozen Kernel imposes behavioral geometry — directional state machine,
 containment relationships, sequencing — rather than an exhaustive ontology
 of prohibited behaviors. Burgess's critique of RDF/OWL in the Semantic
@@ -16,8 +16,6 @@ engineering response.
 
 Source: Burgess, M. "Building a Knowledge Graph of a Music Collection."
 Medium, 2025. (Direct read — paywalled, text obtained directly.)
-
-Insertion point: README Intellectual Lineage section, after Borning/ThingLab.
 
 ## Connection 2 — Promise Theory Unilateral Architecture (GATED)
 Hard constraints as architectural promises the model cannot override because
@@ -33,6 +31,6 @@ same location as Connection 1.
 
 ## Action Item
 Read Burgess's Promise Theory primary sources. Candidate papers:
-- Burgess, M. & Fagernes, S. (2007). "Promise Theory — A Model of
+- Burgess, M. & Fagernes, S. (2006). "Promise Theory — A Model of
   Autonomous Objects with Permissions and Obligations."
 - Burgess, M. (2015). *In Search of Certainty.* O'Reilly.
