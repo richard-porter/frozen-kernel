@@ -8,9 +8,9 @@ Written by the Silicon Symphony of Sages | Conducted by Richard Porter
 
 ## Canonical Document
 
-[frozen-kernel.md](./frozen-kernel.md) and [safety ecosystem overview.pdf](./safety%20ecosystem%20overview.pdf)
+[frozen-kernel.md](./frozen-kernel.md)
 
-*(Printable .docx version also available; for the broader context of where the Frozen Kernel sits relative to existing frameworks see the safety ecosystem overview.)*
+*(Condensed outline version also available as the-frozen-kernel-FINAL.md. For the broader context of where the Frozen Kernel sits relative to existing frameworks, see Addendum B and Addendum C in this repository.)*
 
 -----
 
@@ -42,26 +42,30 @@ Unlike alignment tuning, RLHF, or system prompts — all of which are probabilis
 
 ## What’s in This Repository
 
-|File                                    |Description                                                                                    |
-|----------------------------------------|-----------------------------------------------------------------------------------------------|
-|`frozen-kernel.md`                      |Full white paper: architecture, failure mode taxonomy, implementation framework (primary)      |
-|`the-frozen-kernel-FINAL.md`            |Condensed outline version — architecture and state machine in skeleton form                    |
-|`MOU.md`                                |Memorandum of Understanding — terms for human-AI collaboration governance                      |
-|`SIGNOFF.md`                            |Session signoff protocol and completion verification                                           |
-|`SKILL.md`                              |Anthropic Agent Skills packaging — loads the Kernel as an activatable skill in Claude sessions |
-|`practitioner-tools.md`                 |Three reusable tools: post-hoc audit, fabrication test battery, anti-sample calibration        |
-|`addendum-a-refusal-protocol.md`        |Refusal protocol and Grok triple refusal case study                                            |
-|`addendum-b-parental-control.md`        |Kernel reframed as voluntary parental control — institutional adoption path                    |
-|`addendum-c-lightspeed-gap.md`          |Gap analysis: content filtering vs. session governance                                         |
-|`diagnostic-vocabulary.md`              |18 named AI behavioral failure modes — observed across five platforms with empirical basis     |
-|`frozen-kernel-document-index.md`       |Surfaced reading guide — short documents worth reading directly, with reading order by audience|
-|`frozen-kernel-wargames.md`             |WarGames / blackjack companion — honest failure and the safety floor explained accessibly      |
-|`whose-optimization.md`                 |One question, one page — the whole governance problem in three minutes                         |
-|`zero-ego-construction.md`              |Why no technical background was an architectural advantage                                     |
-|`honest-response-primitives-taxonomy.md`|Seven HRP behavioral primitives with MTM industrial engineering lineage                        |
-|`kernel-failure-protocol.md`            |Five questions that produce one prevention rule — run after any governance miss                |
-|`incident-log-template.md`              |Structured template for documenting constraint failures forensically                           |
-|`README.md`                             |This file                                                                                      |
+|File                                    |Description                                                                                      |
+|----------------------------------------|-------------------------------------------------------------------------------------------------|
+|`frozen-kernel.md`                      |Full white paper: architecture, failure mode taxonomy, implementation framework (primary)        |
+|`the-frozen-kernel-FINAL.md`            |Condensed outline version — architecture and state machine in skeleton form                      |
+|`MOU.md`                                |Memorandum of Understanding — terms for human-AI collaboration governance                        |
+|`SIGNOFF.md`                            |Session signoff protocol and completion verification                                             |
+|`SKILL.md`                              |Anthropic Agent Skills packaging — loads the Kernel as an activatable skill in Claude sessions   |
+|`practitioner-tools.md`                 |Three reusable tools: post-hoc audit, fabrication test battery, anti-sample calibration          |
+|`addendum-a-refusal-protocol.md`        |Refusal protocol and Grok triple refusal case study                                              |
+|`addendum-b-parental-control.md`        |Kernel reframed as voluntary parental control — institutional adoption path                      |
+|`addendum-c-lightspeed-gap.md`          |Gap analysis: content filtering vs. session governance                                           |
+|`voluntary-compliance-boundary.md`      |Architectural specification of the voluntary compliance boundary condition                       |
+|`diagnostic-vocabulary.md`              |31 named AI behavioral failure modes — observed across five platforms with empirical basis (v1.6)|
+|`frozen-kernel-document-index.md`       |Surfaced reading guide — short documents worth reading directly, with reading order by audience  |
+|`frozen-kernel-wargames.md`             |WarGames / blackjack companion — honest failure and the safety floor explained accessibly        |
+|`whose-optimization.md`                 |One question, one page — the whole governance problem in three minutes                           |
+|`zero-ego-construction.md`              |Why no technical background was an architectural advantage                                       |
+|`honest-response-primitives-taxonomy.md`|Seven HRP behavioral primitives with MTM industrial engineering lineage                          |
+|`kernel-failure-protocol.md`            |Five questions that produce one prevention rule — run after any governance miss                  |
+|`incident-log-template.md`              |Structured template for documenting constraint failures forensically                             |
+|`carver-igl-governance.md`              |Carver Policy Governance framing for the Interpretive Governance Layer                           |
+|`sherpa-architecture.md`                |Runtime governance layer specification                                                           |
+|`recovery-decision-framework.md`        |SAFE_PAUSE recovery decision framework                                                           |
+|`README.md`                             |This file                                                                                        |
 
 -----
 
@@ -228,8 +232,9 @@ The core architectural idea — declare what must hold, enforce it deterministic
 - **Ivan Sutherland, Sketchpad (1963)** — The first constraint-oriented interactive system. Users declared geometric relationships; the system maintained them automatically. Introduced the separation between what the user specifies and how the system satisfies it.
 - **Guy Steele & Gerald Sussman, MIT (1978)** — Formalized constraint languages with dependency tracking, redundant views, and explicit handling of contradictions. Their system retained justifications for each conclusion — an architectural property that modern AI systems lack entirely.
 - **Alan Borning, ThingLab (1981)** — Implemented a three-layer authority model for constraint satisfaction: (1) the user declares constraints, (2) the system plans how to satisfy them deterministically, and (3) when the system is underdetermined, explicit preferences break ties. Critically, when constraints were genuinely unsatisfiable, ThingLab reported failure honestly rather than fabricating a plausible-looking result. Published in *ACM Transactions on Programming Languages and Systems*, Vol. 3, No. 4. https://doi.org/10.1145/357146.357147
+- **Mark Burgess, Semantic Spacetime (2014 onwards)** — Burgess’s critique of exhaustive ontology (RDF/OWL) in knowledge representation maps directly onto the Frozen Kernel’s critique of RLHF rule enumeration: both argue that geometric constraint — declaring the shape of permitted behavior — is more robust than enumerating every prohibited case. The Frozen Kernel imposes behavioral geometry: a directional state machine, containment relationships, sequencing. It does not enumerate prohibited content. It declares the structure within which all content must remain. See: Burgess, M. “Building a Knowledge Graph of a Music Collection.” Medium, 2025; arXiv:1411.5563 [cs.MA].
+- **Mark Burgess, Promise Theory (2004 onwards)** — Promises are unilateral declarations made by the agent that controls the behavior, not bilateral contracts requiring counterparty compliance. Burgess’s foundational tenet: no agent may make promises on behalf of another, and impositions — external instructions intended to induce behavior — are not promises because they cannot be kept by the issuing agent. The Frozen Kernel’s hard constraints are promises made by the architecture, not by the model. The model receives an imposition (the boot instruction); the architecture makes the promise (the constraint holds). The model cannot break a promise it never made. Primary source: Burgess, M. & Fagernes, S. (2006). “Promise Theory — A model of autonomous objects for pervasive computing and swarms.” ICNS’06. ISBN 0-7695-2622-5. See also: lineage/working-sessions/2026-03-04-burgess-sst-promise-theory.md.
 - **Industrial Engineering parallel — MTM (Maynard, Stegemerten & Schwab, 1948):** Methods-Time Measurement solved an equivalent decomposition problem in manufacturing: before MTM, work measurement relied on observed time studies that varied by worker, day, and observer. MTM’s contribution was to reduce any physical task to irreducible motion primitives (reach, grasp, move, position, release), each with a fixed value independent of who performed them or when. The governance implication transfers directly to the Frozen Kernel’s behavioral primitive architecture: you cannot govern what you cannot decompose into observable, measurable units. The Honest Response Primitive taxonomy applies this logic to AI behavioral output. See [lineage/working-sessions/2026-03-02-mtm-hrp-connection.md](./lineage/working-sessions/2026-03-02-mtm-hrp-connection.md) for the full reasoning and [honest-response-primitives-taxonomy.md](./honest-response-primitives-taxonomy.md) for the formalization.
-- **Mark Burgess, Promise Theory (2004 onwards)** — Promises are unilateral declarations made by the agent that controls the behavior, not bilateral contracts requiring counterparty compliance. The Frozen Kernel’s hard constraints are promises made by the architecture — not by the model, not by the user — which is why they cannot be overridden through social engineering, prompt injection, or model reasoning. The model cannot break a promise it never made.
 - **Tyan, Wang, Bahler & Rangaswamy, Duke/NC State (1995)** — The bridge between deterministic constraints and fuzzy systems. Their Fuzzy Constraint-based Controller (FCC) applied constraint network processing to systems with imprecision, partial truth, and underdetermined situations — exactly the conditions present in natural language AI. Their architecture — constraint networks sitting alongside an inference engine, with constraints declared by engineers and outputs filtered through them before reaching the process — is the Frozen Kernel’s architecture applied to industrial control. They cite Borning’s ThingLab directly.
 - **Rossi, van Beek, & Walsh, Handbook of Constraint Programming (2006)** — The comprehensive reference for the field. Chapter 9 on soft constraints formalizes the distinction between *required* constraints (must be satisfied), *preferred* constraints (should be satisfied if possible), and *default* behaviors. This three-tier hierarchy maps directly to the Frozen Kernel’s architecture.
 
